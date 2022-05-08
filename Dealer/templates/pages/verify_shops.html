@@ -1,0 +1,32 @@
+{% extends 'layout/dealer_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/verify_shops.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <div class="verifyshop-container">
+        {% for i in data %}
+              <div class="verifyshop-card">
+                      <div class="img-container">
+                        <img src="{% static 'images/shop.jpeg' %}">
+                      </div>
+                      <div class="verifyshop-info">
+                            <h2>{{ i.shopname }}</h2>
+                              <br>
+                            <h3>Longitude:{{ i.along }}</h3>
+                            <h3>Latitude: {{ i.alat }}</h3>
+                              <br>
+                            <div class="verification-container">
+                                <a href="{% url 'dealers:directions' i.along i.alat %}"><button style="padding:5%" >View Location</button></a>
+                                {% if i.verify_status %}
+                              <button style="margin-left: 20px">Verify</button>
+                                {% else %}
+                                <a href="{% url 'dealers:shopverify' i.agent_user_id %}"><button style="margin-left: 20px; background:red;">Verify</button></a>
+                                {% endif %}
+                            </div>
+                      </div>
+              </div>
+        {% endfor %}
+    </div>
+    
+{% endblock itemscontainers %}

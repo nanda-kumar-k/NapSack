@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/updateproduct.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+          <h1 style="text-align: center">Update Product</h1>
+    </div>
+    <div class="updateproduct-container" >
+        {% for info in productsdata %}
+            <div class="updateproduct-inner">
+                <div class="updateproduct-img">
+                    <img src="{% static 'images/item.jpg' %}">
+                </div>
+                <div class="updateproduct-info">
+                    <h1>{{ info.name }}</h1>
+                    <br>
+                    <form method="post">
+                        {% csrf_token %}
+                        <table>
+                            <tr>
+                                <td>Cost</td>
+                                <td id="tdsize"> <input type="text" name="cost" value="{{ info.cost }}" required></td>
+                            </tr>
+                            <tr>
+                                <td>Offer %</td>
+                                <td id="tdsize">  <input type="text" name="offer" value="{{ info.offer }}" ></td>
+                            </tr>
+                            <tr>
+                                <td>No of items present</td>
+                                <td><input type="text" name="noofitemspresent" value="{{ info.quantity_present }}" required></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <input type="submit" value="save" style="float: right">
+                    </form>
+                    <button style="float: right" >Cancel</button>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock itemscontainers %}

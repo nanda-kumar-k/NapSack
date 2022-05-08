@@ -1,0 +1,48 @@
+{% extends 'layout/dealer_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/daily_update.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+<div class="container-add-daily">
+
+
+    <div class="container-dealer">
+        <div class="container-body">
+            <aside class="profile-card">
+
+                <header>
+
+                    <!-- here’s the avatar -->
+                    <a target="_blank" href="https://twitter.com/xxdionxx">
+                        <img src="https://www.dropbox.com/s/9upq789hxnhs361/ava.gif?raw=1">
+                    </a>
+                    <h1>Dion Pramadhan</h1>
+                    <h2>NapSack Delivery Boy</h2>
+
+                </header>
+
+                <!-- bit of a bio; who are you? -->
+                <div class="profile-bio">
+
+                    <p>I’m half unicorn and half biscuits. I design <b>ui + ux</b>, i code the <b>frontend</b>, and i love
+                        <b>motion design</b>
+                    </p>
+
+                </div>
+            </aside>
+        </div>
+    </div>
+    <div class="container-upadte">
+        <div class="update-info">
+            <h2>Are You Coming To job Today...?</h2>
+        </div>
+        <br>
+        <br>
+        <div class="update-buttons">
+            <a href="{% url 'dealers:dealerdailyupdate' 'yes' %}"><button> Yes I am in </button></a>
+            <a href="{% url 'dealers:dealerdailyupdate' 'no' %}"><button> No I am not in </button></a>
+        </div>
+    </div>
+    </div>
+{% endblock itemscontainers %}

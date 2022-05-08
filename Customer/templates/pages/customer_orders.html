@@ -1,0 +1,87 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/customer_orders.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <div class="orders-container">
+        <div class="orders-inner">
+            {% for ords in data %}
+                {% for key, ordinfo  in ords.items %}
+                    {% if forloop.first %}
+                        <div class="order-each">
+                            <div class="orders-inner-date">
+                                <p style="margin-left: 20px">Order# {{ ordinfo.order_id }}</p>
+                                <div style="position: absolute;right: 20px;"><p>{{ ordinfo.status }} </p></div>
+                            </div>
+                            <div class="orders-bill-info">
+                                <div class="orders-bill-info-deliver-address">
+                                    <h3>Shipping Address</h3>
+                                    <br>
+                                    <p>Nanda kumar</p>
+                                    <p>KL University boys hostel</p>
+                                    <p>Green Fields, vaddeswaram,Guntur dist,Andhra pradesh 522502</p>
+                                    <p>MANGALAGIRI, ANDHRA PRADESH 522502</p>
+                                    <p>India</p>
+                                </div>
+                                <div class="orders-bill-info-payments">
+                                    <h3>Payment Method</h3>
+                                    <br>
+                                    <p>Pay on Delivery (Cash/Card). Cash on delivery (COD) available.
+                                        Card/Net banking acceptance subject to device availability.</p>
+                                </div>
+                                <div class="orders-bill-info-summary">
+                                    <h3>Order Summary</h3>
+                                    <br>
+                                    <table>
+                                        <tr>
+                                            <td>No of items</td>
+                                            <td>{{ ordinfo.no_of_items }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><h4>Total Amount</h4></td>
+                                            <td><h4>₹{{ ordinfo.bill }}</h4></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                    {% endif %}
+                            {% if forloop.last %}
+                                    {% for i in ordinfo %}
+                                    <div class="orders-products">
+
+                                        <div class="orders-each-product">
+                                            <div class="orders-each-product-img">
+                                                <img src="{% static 'images/item.jpg' %}" />
+                                            </div>
+                                            <div class="orders-each-product-info">
+                                                <h3>{{ i.Categorie }}</h3>
+                                                <h2>{{ i.name }}</h2>
+
+                                                 <br>
+                                                <table>
+                                                    <tr>
+                                                        <td><h3>Cost:</h3></td>
+                                                        <td><h3>₹{{ i.cost }}</h3></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Quantity: </h3></td>
+                                                        <td><h3>{{ i.quantity }}</h3></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    {% endfor %}
+                             {% endif %}
+                {% endfor %}
+            {% endfor %}
+         </div>
+        </div>
+
+        <div class="orders-recommendations">
+
+        </div>
+    </div>
+{% endblock itemscontainers %}

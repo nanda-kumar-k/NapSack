@@ -1,0 +1,60 @@
+{% load static %}
+{% load bootstrap_icons %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'layout/customer_base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pages/footer_page.css' %}">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'layout/customer_base.js' %}">
+    <title>NapSack</title>
+    {% block css %}
+    {% endblock css %}
+</head>
+<body>
+    <div class="base-navbar-container">
+        <div class="navbar-log">
+            <img src="{% static 'images/logo.png'  %}">
+        </div>
+        <div class="navbar-search-container">
+            <input type="text" >
+            {% bs_icon 'search' size='1.5em' %}
+        </div>
+        <div class="navbar-info">
+            {% bs_icon 'truck' size='1.5em' %}
+            <a href="{% url 'dealers:dearlerlogin' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Be a Dealer</p></a>
+        </div>
+        <div class="navbar-info">
+            {% bs_icon 'person-bounding-box' size='1.5em' %}
+            <a href="{% url 'agents:AgentsLogin' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Be a Agent</p></a>
+        </div>
+        <div class="navbar-info">
+            {% bs_icon 'person-rolodex' size='1.8em' %}
+            <a href="{% url 'customers:login' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Login</p></a>
+        </div>
+        <div class="navbar-info">
+            {% bs_icon 'cart3' size='1.8em' %}
+            <a href="{% url 'customers:login' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Cart</p></a>
+        </div>
+    </div>
+    <div class="navbar-down">
+        {% block navbar-down %}
+
+        {% endblock navbar-down %}
+    </div>
+    <div class="base-container">
+        {% block itemscontainers %}
+
+        {% endblock itemscontainers %}
+    </div>
+    <div class="footer-container">
+        {% include 'pages/footer_page.html' %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/customer_cart.css' %}"
+      xmlns="http://www.w3.org/1999/html">
+{% endblock css %}
+{% block itemscontainers %}
+<h1 class="count" style="display: none; font-size: 0px">{{ data|length }}</h1>
+<div class="cart-container">
+        <div class="cart-lists">
+            {% for i in data %}
+            <div class="cart-each-product">
+                <div class="cart-each-img">
+                    <img src="{{ i.img.image.url }}" >
+                </div>
+                <div class="cart-each-info">
+                    <h4>{{ i.product_name }}</h4>
+                    <br>
+                    <h3 style="margin-bottom: 5px" >Cost: ₹<span id="cost{{ i.class_name }}">{{ i.cost }}</span><strike>₹<span id="actualcost{{ i.class_name }}">{{ i.Actual_cost }}</span></strike> {{ i.offer }}% Off</h3>
+                    <label for="qty" style="font-size: 20px">Qty:</label>
+                    <select id="{{ i.class_name }}" name="qty" style="width: 40px;height: 20px" onchange="bill()">
+                        {% for j in i.qty %}
+                        <option value={{ j }}>{{ j }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <br>
+                    <a  href="{% url 'customers:removecart'  i.product_id  %}"><button>Remove</button></a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="cart-info">
+            <div class="cart-info-bill-details">
+                <h1>PRICE DETAILS</h1>
+                <br>
+                <table>
+                    <tr>
+                        <td>Price ({{ data|length }}items)</td>
+                        <td id="price"></td>
+                    </tr>
+                    <tr>
+                        <td>Discount</td>
+                        <td id="discount"></td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Charges</td>
+                        <td id="Charges">FREE</td>
+                    </tr>
+                    <tr>
+                        <td><h2>Total Amount</h2></td>
+                        <td><h2 id="total"></h2></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cart-info-placeorder">
+                <h3 id="billinfo"></h3>
+            </div>
+            <div class="cart-info-placeorder" style="border-radius: 20px;cursor: pointer">
+                <h1 onclick="getqty()">Place Order</h1>
+            </div>
+        </div>
+</div>
+
+<script>
+    var count = document.querySelector(".count").textContent;
+        var qtycount = "qty"
+        function getqty(){
+            for (let i = 1; i <= count; i++) {
+               temp = "c"+i
+               console.log(temp)
+               var x = ((document.getElementById(temp)||{}).value)||"";
+               qtycount = qtycount + x
+            }
+            console.log(qtycount)
+            alert(qtycount)
+
+            // window.location.href = "http://127.0.0.1:8000/customer/" + lat + "/" + long;
+            window.location.href = "http://127.0.0.1:8000/customer/cartbill/" + qtycount;
+            qtycount = "qty"
+        }
+        totalcost  = 0
+        toatlactualcost = 0
+         function find(){
+            for (let i = 1; i <= count; i++) {
+                t = "costc"+i
+                var cost = document.getElementById(t).innerHTML
+                t = "actualcostc"+i
+                var actualcost = document.getElementById(t).innerHTML
+                temp = "c"+i
+                var x = ((document.getElementById(temp)||{}).value)||"";
+                qty = parseInt(x)
+                totalcost = totalcost + (parseInt(cost) * qty);
+                toatlactualcost = toatlactualcost + (parseInt(actualcost) * qty);
+                 console.log(totalcost)
+                  console.log(toatlactualcost)
+                console.log(typeof qty)
+            }
+        }
+        function bill(){
+            find()
+            if (totalcost <= 500 &  totalcost > 0){
+                totalcost =  totalcost + 40
+                document.getElementById("Charges").innerHTML = "+" + 40
+                document.getElementById("billinfo").innerHTML = "You will save " + "₹" + (totalcost - 40 ) +" on this order";
+            }
+            else {
+                document.getElementById("billinfo").innerHTML = "You will save " + "₹" + (totalcost  ) +" on this order";
+            }
+            document.getElementById("price").innerHTML = "₹" + " " + toatlactualcost;
+            document.getElementById("discount").innerHTML = "-" + " " + (toatlactualcost - totalcost);
+            document.getElementById("total").innerHTML = "₹" + " " + totalcost
+
+            totalcost  = 0
+            toatlactualcost = 0
+        }
+
+        bill();
+</script>
+
+{% endblock itemscontainers %}

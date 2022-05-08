@@ -1,0 +1,125 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/orderdetails.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <br>
+    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+        <h2 style="margin-left: 100px">#order id : ddsf-sd54s-664ds</h2>
+    </div>
+    <div class="orderdetails-container">
+        <div class="orderdetails-addressinfo">
+            {% for k, i in data.items %}
+            {% if forloop.last %}
+
+                        <h2>Shipping Address</h2>
+                        <br>
+                        <p>{{ i.cname }}, {{ i.cphone }}</p>
+                        <h3>Delivery Date & Time : {{ i.delivery_date }} </h3>
+                        <br>
+                        <h2>Delivery Dealer Details</h2>
+                        <br>
+                        <div class="dealer-img-container">
+                            <img src="{% static 'images/shop.jpg' %}">
+                        </div>
+                        <p>{{ i.dname }}, {{ i.dphone }}</p>
+
+                        <br>
+                        <div class="orderdetails-billandqr">
+                            <div class="orderdetails-summary">
+                                <h2>Order Summary</h2>
+                                    <table>
+                                        <tr>
+                                            <td>No of items:</td>
+                                            <td id="tdsize">{{ i.no_of_items }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><h3>Grand Total:</h3></td>
+                                            <td id="tdsize"><h3>₹{{ i.cost }}</h3></td>
+                                        </tr>
+                                    </table>
+                                    <br>
+                                    <p>* Before send Pack All Products in Bag </p>
+                                    <br>
+                                    <button> Send Order </button>
+                            </div>
+                            <div class="orderdetails-qrimg">
+                                <img src="{% static 'images/qr.png' %}">
+                            </div>
+                        </div>
+
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        <div class="orderdetails-products">
+            {% for k, v in data.items %}
+                    {% if forloop.first %}
+                        {% for j in v %}
+            <div class="orderdetails-inner">
+                <div style="display: flex; justify-content: space-between;">
+                    <p><b>#product-id:{{ j.product_id }}</b></p>
+                </div>
+                <div class="orderdetails-items">
+                    <div class="orderdetails-img">
+                        <img src="{% static 'images/item.jpg' %}">
+                    </div>
+                    <div class="orderdetails-info">
+                        <h3>{{ j.name }}</h3>
+
+                        <h3>cat: mobile</h3>
+                        <h3>quantity: {{ j.quantity }}</h3>
+                        <h3>product cost: {{ j.cost }}</h3>
+                    </div>
+                </div>
+            </div>
+             {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock itemscontainers %}
+
+
+
+
+<!--            <table>-->
+<!--                <tr>-->
+<!--                    <td>Name</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td>Nanda kumar k</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Phone Number:</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td>6302551161</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Pin code:</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td>509203</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Locality:</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td>Nagarkurnool</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Address:</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td>vattem(vill), bijinapllay(mdl), nagarkurnool(dist),Telangana, 509203 </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>City/District/Town:</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td>nagarkurnool</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>State:</td>-->
+<!--                    <td id="col">:</td>-->
+<!--                    <td> Telangana</td>-->
+<!--                </tr>-->
+<!--            </table>-->

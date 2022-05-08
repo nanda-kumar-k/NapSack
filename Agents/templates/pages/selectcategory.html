@@ -1,0 +1,24 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/selectcategory.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+        <h1 style="text-align: center">Select Your Shop Category</h1>
+    </div>
+<div class="selectcategory-container">
+    {% for i in data %}
+        <div class="flip-card">
+              <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/item.jpg' %}" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back" >
+                      <a href="{% url 'agents:addcategory' i.Shops_id %}"><h1>{{ i.name }}</h1></a>
+                    </div>
+              </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock itemscontainers %}

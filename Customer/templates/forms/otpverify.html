@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+           otp <input type="text" name="otp" maxlength="6">
+            <input type="submit" name="sub" value="ok">
+    </form>
+</body>
+</html>

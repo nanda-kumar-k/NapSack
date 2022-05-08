@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css"  href="{% static 'layout/base.css' %}" />
+  {% block css %}
+  {% endblock css %}
+</head>
+
+<body>
+  <nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+<!--      <img src="{% static 'images/napsacklogo.png' %}" class="image" alt="">-->
+      <h3 class="hide">Shop Name</h3>
+    </div>
+
+    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Quick Search ...">
+    </div>
+
+    <div class="sidebar-links">
+      <ul>
+        <div class="active-tab"></div>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="{% url 'agents:AgentsHomePage' %}" class="active" data-active="0">
+            <div class="icon">
+              <i class='bx bx-tachometer'></i>
+              <i class='bx bxs-tachometer'></i>
+            </div>
+            <span class="link hide" >Dashboard</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="{% url 'agents:Agentsproducts' %}" data-active="1">
+            <div class="icon">
+              <i class='bx bx-basket'></i>
+              <i class='bx bxs-basket'></i>
+            </div>
+            <span class="link hide" >Products</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="{% url 'agents:Agentsaddproductsinfo' %}" data-active="2">
+            <div class="icon">
+             <i class='bx bx-folder-plus'></i>
+              <i class='bx bxs-folder-plus'></i>
+            </div>
+            <span class="link hide">Add Products</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="#" data-active="3">
+            <div class="icon">
+              <i class='bx bx-bar-chart-square'></i>
+              <i class='bx bxs-bar-chart-square'></i>
+            </div>
+            <span class="link hide">Analytics</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <a href="https://napsack.azurewebsites.net/agents/"><span class="show">Dashboard</span></a>
+          <span>Products</span>
+          <span>Add Products</span>
+          <span>Analytics</span>
+        </div>
+      </ul>
+
+      <h4 class="hide">Orders Info</h4>
+
+      <ul>
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="#" data-active="4">
+            <div class="icon">
+              <i class='bx bx-notepad'></i>
+              <i class='bx bxs-notepad'></i>
+            </div>
+            <span class="link hide">Delivered</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="{% url 'agents:AgentsOrders' %}" data-active="5">
+            <div class="icon">
+              <i class='bx bx-help-circle'></i>
+              <i class='bx bxs-help-circle'></i>
+            </div>
+            <span class="link hide">Pending</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="#" data-active="6">
+            <div class="icon">
+              <i class='bx bx-basketball'></i>
+              <i class='bx bxs-basketball'></i>
+            </div>
+            <span class="link hide">Profile</span>
+          </a>
+        </li>
+        <div class="tooltip">
+          <span class="show">Delivered</span>
+          <span>Pending</span>
+          <span>Profile</span>
+        </div>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <img src="./img/face-1.png" alt="">
+          <div class="admin-info">
+            <h3>John Doe</h3>
+            <h5>Admin</h5>
+          </div>
+        </div>
+        <a href="#" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <div style="width: 100%;height: 8vh; background: #3df1be">
+
+    </div>
+    {% block itemscontainers %}
+
+    {% endblock itemscontainers %}
+
+
+  </main>
+
+  <script src="{% static 'layout/app.js' %}"></script>
+</body>
+
+</html>

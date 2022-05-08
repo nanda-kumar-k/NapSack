@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Display navigation directions</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+    <style>
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        .long-lat-info{
+            z-index: 10000000000000000;
+            width: 350px;
+            height: 50px;
+            position: absolute;
+            top: 10px;
+            left: 350px;
+            background:linear-gradient(rgb(168, 247, 247),white);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            padding: 1%;
+        }
+        .long-lat-info h3{
+            background:linear-gradient(rgb(168, 247, 247),white);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-bottom: 10px;
+            padding: 2%;
+        }
+    </style>
+</head>
+<body>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+<div id="map"></div>
+
+<div class="long-lat-info">
+    <h3 style="margin-bottom: 10px;">Enter below value in  beside box </h3>
+    <h3 id="source"></h3>
+    <h3>B: {{ data }}</h3>
+</div>
+<script>
+    if (!navigator.geolocation)
+    {
+        console.log("Your browser doesn't support geolocation feature!")
+    }
+    else {
+        navigator.geolocation.getCurrentPosition(getPosition);
+    };
+
+    function getPosition(position) {
+        lat = position.coords.latitude
+        long = position.coords.longitude
+        accuracy = position.coords.accuracy
+        console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+        document.getElementById("source").innerHTML = "A: " + long + ", " + lat;
+        mapboxgl.accessToken = 'pk.eyJ1IjoibmFuZGFrdW1hcjA1MzEiLCJhIjoiY2wyOHNjbGFtMGNndDNkbzE3bDZtaTJvcCJ9.kwkwgqaQW0S7_p593KQ1rQ';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [long, lat],
+            zoom: 12
+
+        });
+        map.addControl(
+            new MapboxDirections({
+                accessToken: mapboxgl.accessToken
+            }),
+            'top-left'
+        );
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'layout/dealer_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/dealer_orders.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+
+<div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+    <h1 style="text-align: center">OdersPending</h1>
+</div>
+<div class="orders-container" style="height: 15vh;overflow: hidden; width: 100%;padding: 2% 6% 0 5%;">
+    <div class="orders-inner">
+        <div class="orders-no">
+            <h4>S.N</h4>
+        </div>
+        <div class="orders-info">
+            <h3>#orderid:</h3>
+        </div>
+        <div class="orders-info">
+            <p>ordered on</p>
+        </div>
+        <div class="orders-info">
+            <p>Delivery Date</p>
+        </div>
+        <div class="orders-info">
+            <h4>Status</h4>
+        </div>
+    </div>
+</div>
+
+    <div class="orders-container" style="padding: 0% 5%">
+        {% for i in data %}
+        <div class="orders-inner">
+            <div class="orders-no">
+                <h4>{{ i.sno }}</h4>
+            </div>
+            <div class="orders-info">
+                <h3><a href="{% url 'dealers:dealerorderdetails'  i.order_id  %}">{{ i.order_id }} </a></h3>
+            </div>
+            <div class="orders-info">
+                <p>{{ i.oder_date }}</p>
+            </div>
+            <div class="orders-info">
+                <p>{{ i.delivery_date }}</p>
+            </div>
+            <div class="orders-info">
+                <h4>{{ i.delivery_status }}</h4>
+            </div>
+        </div>
+        {% endfor %}
+        <br>
+        <br>
+        <br>
+    </div>
+{% endblock itemscontainers %}

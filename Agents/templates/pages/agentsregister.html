@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+     <link rel="stylesheet" type="text/css"  href="{% static 'pages/agentslogin.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+
+        <div class="signin-signup">
+
+          <form  class="sign-in-form" method="post">
+            {% csrf_token %}
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{ form.first_name }}
+<!--              <input type="text" placeholder="Username" />-->
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{ form.last_name }}
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{ form.username }}
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                 {% if message.tags == 'error'%}
+                  <div style="height: 40px;width: 320px;color: darkred">
+                    <strong>{{message}}</strong>
+                  </div>
+                 {% endif %}
+              {% endfor %}
+              {% endif %}
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              {{ form.email }}
+<!--              <input type="email" placeholder="Email" />-->
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              {{ form.password }}
+<!--              <input type="password" placeholder="Password" />-->
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                 {% if message.tags == 'warning'%}
+                  <div style="height: 40px;width: 320px;color: darkred">
+                    <strong>{{message}}</strong>
+                  </div>
+                 {% endif %}
+              {% endfor %}
+              {% endif %}
+             <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{ form.phone_number }}
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{ form.agent_shop_name }}
+            </div>
+            <input type="submit" class="btn" value="Sign up" />
+          </form>
+
+          <form action="{% url 'agents:AgentsLogin' %}" class="sign-up-form" method="post">
+            {% csrf_token %}
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" name="username"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" name="password"/>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+                 {% if message.tags == 'info'%}
+                  <div style="height: 40px;width: 320px;color: darkred">
+                    <strong>{{message}}</strong>
+                  </div>
+                 {% endif %}
+              {% endfor %}
+              {% endif %}
+            <input type="submit" value="Login" class="btn solid" />
+
+          </form>
+
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <img src="{% static 'images/logo-white.png' %}"  alt="">
+            <br><br>
+            <h3>One of us ?</h3>
+            <p>
+              log on to your account to let us know where we've been left !
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+                Sign in
+              </button>
+          </div>
+          <img src="{% static 'images/pages/logo-2.png' %}" class="image" alt="" style="height: 470px">
+
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <img src="{% static 'images/logo-white.png' %}"  alt="">
+            <br><br>
+            <h3>New here ?</h3>
+            <p>
+              lets get you started ? <br>
+              create your free account today to join and utilise our services!
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+                Sign up
+              </button>
+
+          </div>
+           <img src="{% static 'images/pages/logo-1.png' %}" class="image" alt="" style="height: 470px">
+        </div>
+      </div>
+    </div>
+   <script>
+      const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
+
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});
+
+    </script>
+  </body>
+</html>

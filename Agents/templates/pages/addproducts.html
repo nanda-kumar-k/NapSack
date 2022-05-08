@@ -1,0 +1,72 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/addproducts.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+        <h1 style="text-align: center">Add products to your shop</h1>
+    </div>
+    <div class="addproducts-container">
+        <div class="addproducts-left">
+            <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+                <h2 style="text-align: center">Catgory name</h2>
+            </div>
+            <br>
+            <ul>
+                {% for k, v in data.items %}
+                    {% if forloop.first %}
+                        {% for j in v %}
+                            <li><a href="{% url 'agents:Agentsaddproducts'  j.categories_id  %}">{{ j.name }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="addproducts-right">
+            <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+                <h2 style="text-align: left">Catgory name</h2>
+            </div>
+            <br>
+            {% for v,k in data.items %}
+                {% if forloop.last %}
+                    {% for j in k %}
+                        <div class="addproducts-products">
+                            <div class="addproducts-img">
+                                <img src="{% static 'images/item.jpg' %}">
+                            </div>
+                            <div class="addproducts-info">
+                                <h3>{{ j.name }}</h3>
+                                <form action="{% url 'agents:Agentsaddproducts' j.product_id %}" method="post">
+                                    {% csrf_token %}
+                                    <table>
+                                        <tr>
+                                            <td>Cost</td>
+                                            <td id="tdsize"> <input type="text" name="cost" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Offer %</td>
+                                            <td id="tdsize">  <input type="text" name="offer" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>No of items present</td>
+                                            <td><input type="text" name="noofitemspresent" required></td>
+                                        </tr>
+                                    </table>
+
+                                    <input type="submit" value="Add"  style="float: right" >
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+    <script>
+        function onadd(ids){
+            document.getElementById(ids).style.background = "blue";
+        }
+    </script>
+{% endblock itemscontainers %}

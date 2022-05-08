@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.base-navbar-container{
+    width: 100%;
+    height: 9vh;
+    background: #3498db;
+    /*background:linear-gradient(rgb(99, 144, 160),white);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    left: 0;
+    padding: 0.1% 8%;
+    align-items: center;
+    color: white;
+}
+
+.base-navbar-container .navbar-log{
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+}
+.base-navbar-container .navbar-log:hover{
+    border-radius: 20px;
+    /*background: white;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.base-navbar-container .navbar-log img{
+    width: 100%;
+    height: 100%;
+}
+.base-navbar-container .navbar-search-container {
+    width: 575px;
+    height: 40px;
+    background: #3498db;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.navbar-search-container input{
+    width: 520px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 20px;
+}
+.navbar-info{
+    display: flex;
+    align-items: center;
+    width: 120px;
+    /*background: yellow;*/
+    margin-left: 20px;
+    text-align: center;
+    cursor: pointer;
+    justify-content: center;
+    padding: 5px;
+}
+.navbar-info a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit;
+}
+.navbar-info:hover {
+    /*background: #3498db;*/
+    border-radius: 20px;
+    /*background: white;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

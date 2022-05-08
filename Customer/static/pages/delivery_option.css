@@ -1,0 +1,78 @@
+.d-o-container {
+    width: 100vw;
+    height: 100vh;
+    /*background: orangered;*/
+}
+.d-o-inner{
+    width: 70vw;
+    height: 58.75vh;
+    padding: 10% 15%;
+    /*background: yellow;*/
+    display: flex;
+    background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.d-o-img-container {
+    width: 30vw;
+    height: 100%;
+    background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.d-o-info {
+    width: 36vw;
+    height: 95.25%;
+    /*background: #04befe;*/
+    padding: 1% 3%;
+    background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.d-o-info td{
+    width: 300px;
+    padding: 1%;
+    font-size: 20px;
+}
+.pay-select-container {
+    width: 32vw;
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+.pay-select-container button {
+    width: 12vw;
+    height: 5vh;
+    font-size: 18px;
+
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/products.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+        <h1 style="text-align: center">Products</h1>
+    </div>
+    <div class="products-container" id="products">
+
+        {% for info in productsdata %}
+                    <div class="products-inner">
+                        <div class="products-img">
+                            <img src="{% static 'media/{{ info.image_id }}' %}">
+                            <p>{{ info.image_id }}</p>
+                        </div>
+                        <div class="products-info">
+                            <h4>{{ info.name }}</h4>
+                            <br>
+                            <p>category: {{ info.categories_id }}</p>
+                            <p>Cost: {{ info.cost }}</p>
+                            <p>Offer %: {{ info.offer }}</p>
+                            <p>No of items Present: {{ info.quantity_present }}</p>
+                            <button style="float: right;" onclick="onsubmitevent('open')" >
+                                <a href= "{% url 'agents:Agentsproductupdate' info.agent_product_id %}"> Update</a></button>
+                            <button style="float: right;margin-right: 150px">
+                                <a href= "{% url 'agents:Agentsproductremove' info.agent_product_id %}"> Remove</a></button>
+                        </div>
+                    </div>
+        {% endfor %}
+
+{% endblock itemscontainers %}
+

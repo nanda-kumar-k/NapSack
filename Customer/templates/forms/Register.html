@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'forms/Register.css' %}">
+    
+</head>
+<body>
+    <h1>customer</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ field.errors }}
+        {{ form.as_p}}
+        <input type="submit">
+    </form>
+</body>
+</html>

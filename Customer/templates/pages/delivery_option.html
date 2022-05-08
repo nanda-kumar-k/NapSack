@@ -1,0 +1,106 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/delivery_option.css' %}">
+<meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+/>
+<!-- Link Swiper's CSS -->
+<link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css"
+/>
+
+{% endblock css %}
+{% block itemscontainers %}
+    <div class="d-o-container">
+        <div class="d-o-inner">
+            <div class="d-o-img-container">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        {% for k, v in data.items %}
+                            {% if forloop.first %}
+                                {% for i in v %}
+                                    <div class="swiper-slide">Slide 3</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="d-o-info">
+                <h1 style="text-align: center">Order Details </h1>
+                {% for k, i in data.items %}
+                {% if forloop.last %}
+                        <br>
+                         <table>
+                            <tr>
+                                <td>UserName:</td>
+                                <td >{{ i.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{ i.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail:</td>
+                                <td>{{ i.email }}</td>
+                            </tr>
+                             <tr>
+                                <td>Phone Number:</td>
+                                <td>{{ i.phone_number }}</td>
+                            </tr>
+                             <tr>
+                                <td>No of Products:</td>
+                                <td>{{ i.total_items }}</td>
+                            </tr>
+                             <tr>
+                                <td>Total Cost:</td>
+                                <td>{{ i.cost }}</td>
+                            </tr>
+                         </table>
+                        <br>
+                        <hr>
+                        <br>
+                        <h3> * Select a payment method</h3>
+                        <br>
+                        <div class="pay-select-container">
+                            <a href="{% url 'customers:cashonedelivery' %}"><button style="margin-right: 70px">Pay on Delivery</button></a>
+                            <a href="{{ i.pay_url }}"><button style="margin-right: -30px">Pay Now</button></a>
+<!--                             <a href="-->
+<!--http://127.0.0.1:8000/customer/payment/?payment_id=MOJO2426W05Q20487814&payment_status=Credit&payment_request_id=b5ede769cd624012b084c04f004a89f9"><button style="margin-right: -30px">Pay Now</button></a>-->
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+{% endblock itemscontainers %}

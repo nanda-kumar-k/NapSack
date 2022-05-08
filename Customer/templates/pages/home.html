@@ -1,0 +1,167 @@
+{% extends 'layout/customer_base.html' %}
+{% load static %}
+{% load bootstrap_icons %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/home.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock css %}
+{% block itemscontainers %}
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{% static 'images/img6.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img1.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img2.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img3.jpg' %}"></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="shop-info">
+        <div class="shops-right">
+            {% for v in data %}
+            {% if forloop.first %}
+                {% for j in v %}
+                    <a href="{% url 'customers:products'  j.agent_shop_categorie_id  %}">
+                    <div class="shops-card">
+                        <img src="{% static 'images/item.jpg' %}">
+                        <div class="shops-card-info">
+                            <h3 style="color:black">{{ j.name }}</h3>
+                            <h1 style="color:black">{{ j.agent_shop_name }}</h1>
+                        </div>
+                    </div>
+                    </a>
+            {% endfor %}
+                    {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{{ data.image.url }}}
+    <div class="deliver-conatiner">
+        <div class="container">
+            <div class="car-wrapper">
+                <div class="car-wrapper_inner">
+
+                    <div class="car_outter">
+                        <div class="car">
+                            <div class="body">
+                                <div></div>
+                            </div>
+                            <div class="decos">
+                                <div class="line-bot"></div>
+                                <div class="door">
+                                    <div class="handle"></div>
+                                    <div class="bottom"></div>
+                                </div>
+                                <div class="window"></div>
+                                <div class="light"></div>
+                                <div class="light-front"></div>
+                                <div class="antenna"></div>
+                                <div class="ice-cream">
+                                    <div class="cone"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="wheel"></div>
+                                <div class="wheel"></div>
+                            </div>
+                            <div class="wind">
+                                <div class="p p1"></div>
+                                <div class="p p2"></div>
+                                <div class="p p3"></div>
+                                <div class="p p4"></div>
+                                <div class="p p5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="background-stuff">
+            <div class="bg"></div>
+            <div class="bg bg-2"></div>
+            <div class="bg bg-3"></div>
+            <div class="ground"></div>
+        </div>
+    </div>
+<br>
+<br>
+<br>
+
+<div class="products-con-info">
+    <div class="pro-slider-right"  >
+        {% for v in data %}
+        {% if forloop.last %}
+        {% for j in v %}
+        <div class="container">
+            <div class="img-container">
+                <img  src="{{ j.img.image.url }}" alt="">
+                <div class="product-cost">
+                    <h2>offer:{{ j.offer }}% | {{ j.cost }} </h2>
+                </div>
+            </div>
+            <div class="social-media">
+                <li><a href="#">{% bs_icon 'cart3' size='1.5em' %}</a></li>
+                <li><a href="#">{% bs_icon 'search' size='1.5em' %}</a></li>
+            </div>
+            <div class="user-info">
+                <span>{{ j.categories_id }}</span>
+                <h4>{{ j.name }} </h4>
+
+            </div>
+            <div class="img-offer">
+                <img src="{% static 'images/offer.png' %}">
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+    <div class="people-info">
+        <div class="images-leaning">
+            <div>
+                <img src="https://assets.codepen.io/1025350/eleanor.jpg" alt="Eleanor from The Good Place" />
+            </div>
+            <div>
+                <img src="https://assets.codepen.io/1025350/chidi.jpg" alt="Chidi from The Good Place" />
+            </div>
+            <div>
+                <img src="https://assets.codepen.io/1025350/jason.jpg" alt="Jason from The Good Place" />
+            </div>
+            <div>
+                <img src="https://assets.codepen.io/1025350/tahani.jpg" alt="Tahani from The Good Place" />
+            </div>
+        </div>
+    </div>
+<br>
+<br>
+<br>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+{% endblock itemscontainers %}

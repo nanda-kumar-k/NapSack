@@ -1,0 +1,89 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'maps/Shop_location.css' %}">
+</head>
+
+<body>
+    <div id="map">
+        <div class="bu">
+            <button class="map-submit">submit</button>
+        </div>
+        <div class="map-zoom">
+			<button class="map-zoom-out-btn">See Your Current Location</button>
+		</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        let map_init = L.map("map").setView([19.5937, 78.9629], 3);
+        var lat
+        var long
+        var accuracy
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+        }).addTo(map_init);
+
+        if (!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!")
+        }
+        else {
+                navigator.geolocation.getCurrentPosition(getPosition);
+        };
+
+
+        var marker, circle, lat, long, accuracy;
+
+        function getPosition(position) {
+            lat = position.coords.latitude
+            long = position.coords.longitude
+            accuracy = position.coords.accuracy
+            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+        }
+
+        document.querySelector(".map-zoom-out-btn").addEventListener("click", () => {
+            if (marker) {
+                map_init.removeLayer(marker)
+            }
+
+            if (circle) {
+                map_init.removeLayer(circle)
+            }
+
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], { radius: accuracy })
+            // map_init.flyTo([lat, long], 15)
+            // var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+            map_init.flyTo([lat, long], 17)
+            point()
+            // map_init.fitBounds(featureGroup.getBounds())
+        // map.flyTo([19.5937, 78.9629], 10);
+
+        });
+
+        function point(){
+            setTimeout(function(){
+                var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+        },4000);
+        }
+
+        document.querySelector(".map-submit").addEventListener("click", () => {
+            window.location.href = "http://127.0.0.1:8000/agents/" + lat + "/" + long;
+        });
+
+    </script>
+</body>
+
+</html>

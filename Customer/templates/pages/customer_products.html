@@ -1,0 +1,54 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+{% load bootstrap_icons %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/customer_products.css' %}">
+{% endblock css %}
+{% block itemscontainers %}
+<div class="slider-container" style="margin-top: 9vh">
+    <div class="slider-left">
+        <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+                <h2 style="text-align: center">Catgory name</h2>
+            </div>
+            <br>
+            <ul>
+               {% for  v in data %}
+                    {% if forloop.first %}
+                        {% for j in v %}
+                            <li><a href="{% url 'customers:specificcat'  j.categories_id  %}">{{ j.categorie_name }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+    </div>
+    <div class="slider-right"  >
+        {% for v in data %}
+            {% if forloop.last %}
+                {% for j in v %}
+                    <div class="container">
+                        <div class="img-container">
+                            <img src= "{{ j.img.image.url }}" alt="">
+                            <div class="product-cost">
+                                <h2>Rs:199 | {{ j.cost }} </h2>
+                            </div>
+                        </div>
+                        <div class="social-media">
+                            <li><a href="{% url 'customers:addtocart'  j.agent_product_id  %}">{% bs_icon 'cart3' size='1.5em' %}</a></li>
+                            <li><a href="{% url 'customers:product'  j.agent_product_id  %}">{% bs_icon 'search' size='1.5em' %}</a></li>
+                        </div>
+                        <div class="user-info">
+                            <span>{{ j.categorie_name }}</span>
+                            <h4>{{ j.product_name }} </h4>
+
+                        </div>
+                        <div class="img-offer">
+                            <img src="{% static 'images/offer.png' %}">
+                        </div>
+                    </div>
+                    {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock itemscontainers %}

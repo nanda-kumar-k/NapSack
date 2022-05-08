@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" type="text/css"  href="{% static 'pages/dealer_register.css' %}" />
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <title>Login Form Sign In Sign Up</title>
+        <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    </head>
+    <body>
+        <div class="login">
+            <div class="login__content">
+                <div class="login__img">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <img class="swiper-slide" src="{% static 'images/img-login.svg' %}" alt="">
+                            <img class="swiper-slide" src="{% static 'images/img-login.svg' %}" alt="">
+                            <img class="swiper-slide" src="{% static 'images/img-login.svg' %}" alt="">
+<!--                            <div class="swiper-slide"><img src="{% static 'images/img-login.svg' %}" alt=""></div>-->
+<!--                            <div class="swiper-slide"><img src="{% static 'images/img-login.svg' %}" alt=""></div>-->
+<!--                            <div class="swiper-slide"><img src="{% static 'images/img-login.svg' %}" alt=""></div>-->
+<!--                            <div class="swiper-slide"><img src="{% static 'images/img-login.svg' %}" alt=""></div>-->
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="login__forms">
+                    <form action="{% url 'dealers:dearlerregister' %}" method="post" class="login__registre" id="login-in">
+                          {% csrf_token %}
+                        <h1 class="login__title">Create Account</h1>
+
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+<!--                            <input type="text" placeholder="Username" class="login__input">-->
+                            {{ form.full_name }}
+                        </div>
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+<!--                            <input type="text" placeholder="Username" class="login__input">-->
+                            {{ form.username }}
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error'%}
+                        <div style="height: 40px;width: 320px;color: darkred">
+                          <strong>{{message}}</strong>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <div class="login__box">
+                            <i class='bx bx-at login__icon'></i>
+<!--                            <input type="text" placeholder="Email" class="login__input">-->
+                            {{ form.email }}
+                        </div>
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+<!--                            <input type="password" placeholder="Password" class="login__input">-->
+                             {{ form.password }}
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'warning'%}
+                        <div style="height: 40px;width: 320px;color: darkred">
+                          <strong>{{message}}</strong>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+<!--                            <input type="password" placeholder="Password" class="login__input">-->
+                             {{ form.phone_number }}
+                        </div>
+                            <input type="submit" placeholder="Sign Up" value="Sign Up"  class="login__button">
+                        <div>
+                            <span class="login__account">Already have an Account ?</span>
+<!--                            <span class="login__signup" id="sign-in">Sign In</span>-->
+                            <span class="login__signin" id="sign-up">Sign Up</span>
+                        </div>
+                    </form>
+
+                    <form action="{% url 'dealers:dearlerlogin' %}" method="post" class="login__create none" id="login-up">
+                        {% csrf_token %}
+                        <h1 class="login__title">Sign In</h1>
+
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                            <input type="text" placeholder="Username" name="username" class="login__input">
+                        </div>
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="Password" name="password" class="login__input">
+                        </div>
+                        {% if messages %}
+                          {% for message in messages %}
+                             {% if message.tags == 'info'%}
+                              <div style="height: 40px;width: 320px;color: darkred">
+                                <strong>{{message}}</strong>
+                              </div>
+                             {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                        <a href="#" class="login__forgot">Forgot password?</a>
+                        <input type="submit" placeholder="Sign Up" value="Sign Up"  class="login__button">
+
+                        <div>
+                            <span class="login__account">Don't have an Account ?</span>
+<!--                            <span class="login__signin" id="sign-up">Sign Up</span>-->
+                            <span class="login__signup" id="sign-in">Sign In</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--===== MAIN JS =====-->
+        <script>
+            /*===== LOGIN SHOW and HIDDEN =====*/
+const signUp = document.getElementById('sign-up'),
+    signIn = document.getElementById('sign-in'),
+    loginIn = document.getElementById('login-in'),
+    loginUp = document.getElementById('login-up')
+
+
+signUp.addEventListener('click', ()=>{
+    // Remove classes first if they exist
+    loginIn.classList.remove('block')
+    loginUp.classList.remove('none')
+
+    // Add classes
+    loginIn.classList.toggle('none')
+    loginUp.classList.toggle('block')
+})
+
+signIn.addEventListener('click', ()=>{
+    // Remove classes first if they exist
+    loginIn.classList.remove('none')
+    loginUp.classList.remove('block')
+
+    // Add classes
+    loginIn.classList.toggle('block')
+    loginUp.classList.toggle('none')
+})
+
+        </script>
+     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    </body>
+</html>
