@@ -3,6 +3,7 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'pages/customer_cart.css' %}"
       xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" href="sweetalert2.min.css">
 {% endblock css %}
 {% block itemscontainers %}
 <h1 class="count" style="display: none; font-size: 0px">{{ data|length }}</h1>
@@ -14,7 +15,7 @@
                     <img src="{{ i.img.image.url }}" >
                 </div>
                 <div class="cart-each-info">
-                    <h4>{{ i.product_name }}</h4>
+                    <a href="{% url 'customers:product' i.product_id %}"><h4>{{ i.product_name }}</h4></a>
                     <br>
                     <h3 style="margin-bottom: 5px" >Cost: ₹<span id="cost{{ i.class_name }}">{{ i.cost }}</span><strike>₹<span id="actualcost{{ i.class_name }}">{{ i.Actual_cost }}</span></strike> {{ i.offer }}% Off</h3>
                     <label for="qty" style="font-size: 20px">Qty:</label>
@@ -25,7 +26,7 @@
                     </select>
 
                     <br>
-                    <a  href="{% url 'customers:removecart'  i.product_id  %}"><button>Remove</button></a>
+                 <button onclick="removeconformation()" id="Url"  data-url="{% url 'customers:removecart'  i.product_id  %}">Remove</button>
                 </div>
             </div>
             {% endfor %}
@@ -33,8 +34,9 @@
         </div>
 
         <div class="cart-info">
-            <div class="cart-info-bill-details">
-                <h1>PRICE DETAILS</h1>
+            <div class="cart-info-bill-details" >
+                <br>
+                <h1 style="text-align: center;">PRICE DETAILS</h1>
                 <br>
                 <table>
                     <tr>
@@ -55,15 +57,17 @@
                     </tr>
                 </table>
             </div>
-            <div class="cart-info-placeorder">
-                <h3 id="billinfo"></h3>
+            <div class="cart-info-placeorder" style="background-color: white;">
+                <h3 id="billinfo" ></h3>
             </div>
             <div class="cart-info-placeorder" style="border-radius: 20px;cursor: pointer">
                 <h1 onclick="getqty()">Place Order</h1>
             </div>
         </div>
 </div>
-
+<script src="sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var count = document.querySelector(".count").textContent;
         var qtycount = "qty"
@@ -75,10 +79,9 @@
                qtycount = qtycount + x
             }
             console.log(qtycount)
-            alert(qtycount)
-
+            // alert(qtycount)
             // window.location.href = "http://127.0.0.1:8000/customer/" + lat + "/" + long;
-            window.location.href = "http://127.0.0.1:8000/customer/cartbill/" + qtycount;
+            window.location.href = "http://127.0.0.1:8000/cartbill/" + qtycount;
             qtycount = "qty"
         }
         totalcost  = 0
@@ -104,10 +107,10 @@
             if (totalcost <= 500 &  totalcost > 0){
                 totalcost =  totalcost + 40
                 document.getElementById("Charges").innerHTML = "+" + 40
-                document.getElementById("billinfo").innerHTML = "You will save " + "₹" + (totalcost - 40 ) +" on this order";
+                document.getElementById("billinfo").innerHTML = "You will save " + "₹" + (toatlactualcost - totalcost) +" on this order";
             }
             else {
-                document.getElementById("billinfo").innerHTML = "You will save " + "₹" + (totalcost  ) +" on this order";
+                document.getElementById("billinfo").innerHTML = "You will save " + "₹" + (toatlactualcost - totalcost) +" on this order";
             }
             document.getElementById("price").innerHTML = "₹" + " " + toatlactualcost;
             document.getElementById("discount").innerHTML = "-" + " " + (toatlactualcost - totalcost);
@@ -116,6 +119,24 @@
             totalcost  = 0
             toatlactualcost = 0
         }
+        function removeconformation(){
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this Product!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Remove from cart!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                var url = $("#Url").attr("data-url");
+                document.location.href = url
+            }
+            })
+        };
+
+
 
         bill();
 </script>

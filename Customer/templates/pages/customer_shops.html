@@ -18,19 +18,23 @@
     </div>
     <div class="shops-container">
         <div class="shops-left">
-            <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
-                <h2 style="text-align: center">Catgory name</h2>
+            <br>
+            <div >
+                <h1 style="text-align: center"> Shop Categories </h1>
+                <hr>
             </div>
             <br>
             <ul>
                 {% for  v in data %}
                     {% if forloop.first %}
                         {% for j in v %}
-                            <li><a href="{% url 'customers:specificshop'  j.agent_shop_categorie_id  %}">{{ j.name }}</a></li>
+                            <li><a href="{% url 'customers:specificshop'  j.agent_shop_categorie_id  %}"><b>{{ j.name }}</b></a></li>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
             </ul>
+            <br>
+            <br>
         </div>
         <div class="shops-right">
             {% for v in data %}
@@ -41,7 +45,9 @@
                         <img src="{{ j.img.image.url }}">
                         <div class="shops-card-info">
                             <h3 style="color:black">{{ j.name }}</h3>
-                            <h1 style="color:black">{{ j.agent_shop_name }}</h1>
+                            <marquee width="100%" direction="left">
+                            <h2 style="color:black">{{ j.agent_shop_name }}</h2>
+                            </marquee>
                         </div>
                     </div>
                     </a>

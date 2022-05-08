@@ -230,11 +230,6 @@ def Orders(request):
         temp['order_info'] = t1
         temp['order_products'] = orders_products
         data.append(temp)
-    print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
-    print(len(data))
-    for i in data:
-        print(i)
-        print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
     return render(request, "pages/customer_orders.html", {'data':data})
 
 
@@ -242,16 +237,20 @@ def AddtoCart(request, uuid_id):
     if currentuser or shopid or lat or long:
         redirect('customers:login')
     un = models.CustomerUsers.objects.get(user_id=currentuser)
-    Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shopid).values()
-    uid_one = Auid[0]
-    Aun = uid_one['username_id']
-    s = models.CustomerCart(customerusername=un, shop_id=Aun, product_id=uuid_id)
-    s.save()
-    data = {
-        'data' : shopid,
-        'yorn' : True
-    }
-    return render(request, "pages/addtocat.html", {"data": shopid})
+    # Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shopid).values()
+    # uid_one = Auid[0]
+    # Aun = uid_one['username_id']
+    find =  models.CustomerCart.objects.filter(product_id=uuid_id).values()
+    if find:
+        return redirect('customers:products ' ,shopid)  # redirect to products page
+    else:
+        s = models.CustomerCart(customerusername=un, shop_id=shopid, product_id=uuid_id)
+        s.save()
+        data = {
+            'data' : shopid,
+            'yorn' : True
+        }
+    return redirect('customers:products' , shopid) # redirect to products page
 
 def RemoveCart(request, uuid_id):
     if currentuser or shopid or lat or long:
@@ -387,6 +386,7 @@ def ProductsCat():
             temp_data['categories_id'] = p_temp_one['categories_id_id']
             temp_data['categorie_name'] = c_temp_one['name']
             temp_data['product_name'] = p_temp_one['name']
+            temp_data['offercost'] = int(each['cost'] - ((each['offer'] / 100) * each['cost']))
             temp_data['img'] = img_url
             data.append(temp_data)
     print("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt")

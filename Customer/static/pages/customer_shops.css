@@ -33,22 +33,23 @@
 
 
 .shops-container {
-    width: 100%;
-    height: 91vh;
+    width: 96%;
     display: flex;
+    padding: 2%;
+    height: 100%;
     /*background: #131469;*/
 }
 
 .shops-left {
     width: 15vw;
     height: 100%;
-    background: orange;
+    /* background: orange; */
     display: flex;
     flex-direction: column;
     /*background: orange;*/
     overflow-y: auto;
     padding: 0 2%;
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -101,8 +102,8 @@
 
 
 .shops-right {
-    width: 78vw;
-    height: 87vh;
+    width: 70vw;
+    /* height: 87vh; */
     /*background: red;*/
     display: flex;
     flex-wrap: wrap;
@@ -114,14 +115,14 @@
     width: 14vw;
     height: 40vh;
     display: block;
-    background: chartreuse;
     position: relative;
-    padding: 1%;
+    padding: 3%;
     margin-bottom: 25px;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     cursor: pointer;
+    margin: 0 10px 20px  10px;
 }
 .shops-card img {
     width: 100%;
@@ -131,7 +132,7 @@
 .shops-card-info {
     position: absolute;
     bottom: 0%;
-    margin-left: -5%;
+    left: 0%;
     padding: 4%;
     z-index: 1;
     color: white;

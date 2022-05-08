@@ -79,9 +79,9 @@ def UpdateCOD(user_id,lat, long,data,shop_id):
                                            payment_id="Cash and Delivery",status="Cash and Delivery",bill=data[l - 1],
                                            customerusername=un, longitude= long,latitude=lat, payment_mode="Online Payment")
     cus_pay_update.save()
-    Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shop_id).values()
-    uid_one = Auid[0]
-    Aun_get = AgentsUsers.objects.get(agen_user_id=uid_one['username_id'])
+    # Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shop_id).values()
+    # uid_one = Auid[0]
+    Aun_get = AgentsUsers.objects.get(agen_user_id=shop_id)
     # t_uuid = uuid.uuid4()
     aorder = AgentOrders(agent_order_id=te_uuid, agentsusers=Aun_get, bill=data[l - 1],
                          delivery_info="Order Not Send")

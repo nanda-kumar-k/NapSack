@@ -19,16 +19,17 @@
             <div class="d-o-img-container">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">Slide 1</div>
-                        <div class="swiper-slide">Slide 2</div>
-                        <div class="swiper-slide">Slide 3</div>
+                        <div class="swiper-slide"><img src="{% static 'images/delivery/d4.png' %} " ></div>
                         {% for k, v in data.items %}
                             {% if forloop.first %}
                                 {% for i in v %}
-                                    <div class="swiper-slide">Slide 3</div>
+                                    <div class="swiper-slide"><img src="{{ i.img.image.url }}" ></div>
                                 {% endfor %}
                             {% endif %}
                         {% endfor %}
+                        <div class="swiper-slide"><img src="{% static 'images/delivery/d1.jpg' %} " ></div>
+                        <div class="swiper-slide"> <img src="{% static 'images/delivery/d2.jpg' %} " > </div>
+                        <div class="swiper-slide"> <img src="{% static 'images/delivery/d3.jpg' %} " > </div>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>

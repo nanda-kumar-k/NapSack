@@ -1,3 +1,7 @@
+a {
+    color: #060606;
+    text-decoration: none;
+}
 .cart-container {
     padding: 6vh 10vw;
     width: 78.5vw;
@@ -19,8 +23,8 @@
     width: 43vw;
     height: 20vh;
     display: flex;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     /*background-color: brown;*/
 }
 .cart-each-img {
@@ -28,8 +32,8 @@
     height: 18vh;
     /*background-color:white ;*/
     padding: 1.5%;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 .cart-each-img img{
     width: 100%;
@@ -51,9 +55,12 @@
     /*border-radius: 10px;*/
     /*border: none;*/
     border-style: solid;
+    cursor: pointer;
 }
 .cart-info {
-    width: 25vw;
+    width: 28vw;
+    margin-left: 100px;
+    text-align: left;
     /*background-color: white;*/
     padding: 1% ;
     /*margin-left: 5vw;*/
@@ -64,12 +71,12 @@
 .cart-info-bill-details {
     /*background: #003366;*/
     padding: 2% 4%;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 .cart-info td {
-    padding: 3%;
-    width: 30%;
+    padding: 5%;
+    width: 50%;
     font-size: 20px;
 }
 .cart-info-placeorder {
@@ -77,6 +84,7 @@
     margin-top: 20px;
     /*background: #006b1b;*/
     text-align: center;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(248, 172, 85),white); */
+    background-color: #e09f44;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }

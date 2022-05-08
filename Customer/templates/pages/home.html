@@ -3,7 +3,8 @@
 {% load bootstrap_icons %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'pages/home.css' %}">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" > 
 {% endblock css %}
 {% block itemscontainers %}
     <div class="swiper mySwiper">
@@ -17,17 +18,36 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
+
+    <div class="shop-info-container">
+        <div class="content">
+            <div class="content__container">
+              <p class="content__container__text">
+                Hello
+              </p>
+              <ul class="content__container__list">
+                <li class="content__container__list__item">world !</li>
+                <li class="content__container__list__item">bob !</li>
+                <li class="content__container__list__item">users !</li>
+                <li class="content__container__list__item">everybody !</li>
+              </ul>
+            </div>
+          </div>
+    </div>
+
     <div class="shop-info">
         <div class="shops-right">
             {% for v in data %}
             {% if forloop.first %}
                 {% for j in v %}
-                    <a href="{% url 'customers:products'  j.agent_shop_categorie_id  %}">
+                    <a href="{% url 'customers:login' %}">
                     <div class="shops-card">
-                        <img src="{% static 'images/item.jpg' %}">
+                        <img src="{{ j.img.image.url }}">
                         <div class="shops-card-info">
                             <h3 style="color:black">{{ j.name }}</h3>
-                            <h1 style="color:black">{{ j.agent_shop_name }}</h1>
+                            <marquee width="100%" direction="left">
+                                <h2 style="color:black">{{ j.agent_shop_name }}</h2>
+                            </marquee>
                         </div>
                     </div>
                     </a>
@@ -38,10 +58,11 @@
     </div>
 {{ data.image.url }}}
     <div class="deliver-conatiner">
-        <div class="container">
-            <div class="car-wrapper">
+        <div class="container-deliver">
+            <h2 class='elegantshadow'> fastest delivery with in 2 hours</h2>
+            
+            <div class="car-wrapper" style="z-index: 1000;">
                 <div class="car-wrapper_inner">
-
                     <div class="car_outter">
                         <div class="car">
                             <div class="body">
@@ -105,17 +126,17 @@
                 </div>
             </div>
             <div class="social-media">
-                <li><a href="#">{% bs_icon 'cart3' size='1.5em' %}</a></li>
-                <li><a href="#">{% bs_icon 'search' size='1.5em' %}</a></li>
+                <li><a href="{% url 'customers:login' %}">{% bs_icon 'cart3' size='1.5em' %}</a></li>
+                <li><a href="{% url 'customers:login' %}">{% bs_icon 'search' size='1.5em' %}</a></li>
             </div>
             <div class="user-info">
                 <span>{{ j.categories_id }}</span>
                 <h4>{{ j.name }} </h4>
 
             </div>
-            <div class="img-offer">
+            <!-- <div class="img-offer">
                 <img src="{% static 'images/offer.png' %}">
-            </div>
+            </div> -->
         </div>
         {% endfor %}
         {% endif %}

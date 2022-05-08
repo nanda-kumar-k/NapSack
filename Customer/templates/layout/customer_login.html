@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'layout/customer_base.js' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>NapSack</title>
     {% block css %}
     {% endblock css %}
@@ -33,9 +34,22 @@
             {% bs_icon 'person-bounding-box' size='1.5em' %}
             <a href="{% url 'agents:AgentsLogin' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Be a Agent</p></a>
         </div>
-        <div class="navbar-info">
-            {% bs_icon 'person-rolodex' size='1.8em' %}
-            <a href="{% url 'customers:logout' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Logout</p></a>
+        <div class="navbar-info" style="width: 150px;">
+            {% bs_icon 'person-rolodex' size='1.8em' %} 
+            <div class="navbar">
+                <div class="dropdown">
+                    <button class="dropbtn">nanda kumar 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <br>
+                    <a href="#">orders</a>
+                    <a href="#">Profile</a>
+                    <a href="{% url 'customers:logout' %}">Logout</a>
+                    <br>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="navbar-info">
             {% bs_icon 'cart3' size='1.8em' %}

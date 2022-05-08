@@ -3,23 +3,28 @@
 {% load bootstrap_icons %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'pages/customer_products.css' %}">
+<link rel="stylesheet" href="sweetalert2.min.css">
 {% endblock css %}
 {% block itemscontainers %}
 <div class="slider-container" style="margin-top: 9vh">
     <div class="slider-left">
-        <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
-                <h2 style="text-align: center">Catgory name</h2>
-            </div>
+        <br>
+        <div >
+            <h2 style="text-align: center"> Products Categories </h2>
+            <hr>
+        </div>
             <br>
             <ul>
                {% for  v in data %}
                     {% if forloop.first %}
                         {% for j in v %}
-                            <li><a href="{% url 'customers:specificcat'  j.categories_id  %}">{{ j.categorie_name }}</a></li>
+                            <li><a href="{% url 'customers:specificcat'  j.categories_id  %}"><b>{{ j.categorie_name }}</b></a></li>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
             </ul>
+        <br>
+        <br>
     </div>
     <div class="slider-right"  >
         {% for v in data %}
@@ -29,26 +34,47 @@
                         <div class="img-container">
                             <img src= "{{ j.img.image.url }}" alt="">
                             <div class="product-cost">
-                                <h2>Rs:199 | {{ j.cost }} </h2>
+                                <h2>offer:{{ j.offer }}% | {{ j.offercost }} </h2>
                             </div>
                         </div>
                         <div class="social-media">
-                            <li><a href="{% url 'customers:addtocart'  j.agent_product_id  %}">{% bs_icon 'cart3' size='1.5em' %}</a></li>
+                            <li><a onclick="fun()" id="Url"  data-url="{% url 'customers:addtocart'  j.agent_product_id  %}" href="#" >{% bs_icon 'cart3' size='1.5em' %}</a></li>
                             <li><a href="{% url 'customers:product'  j.agent_product_id  %}">{% bs_icon 'search' size='1.5em' %}</a></li>
                         </div>
                         <div class="user-info">
-                            <span>{{ j.categorie_name }}</span>
+                            <br>
                             <h4>{{ j.product_name }} </h4>
-
                         </div>
-                        <div class="img-offer">
-                            <img src="{% static 'images/offer.png' %}">
-                        </div>
+                        
                     </div>
                     {% endfor %}
             {% endif %}
         {% endfor %}
     </div>
 </div>
+<script src="sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function fun(){
+        Swal.fire({
+  title: 'Do you want to add to cart...?',
+  showDenyButton: true,
+//   showCancelButton: true,
+  confirmButtonText: 'Add To Cart',
+  denyButtonText: `Cancel`,
+}).then((result) => {
+  if (result.isConfirmed) {
+    var url = $("#Url").attr("data-url");
+    document.location.href = url
+  } 
+//   else if (result.isDenied) {
+//     Swal.fire('Not added to cart', '', 'info')
+//   }
+})
+}
 
+
+
+</script>
 {% endblock itemscontainers %}

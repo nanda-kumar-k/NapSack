@@ -9,8 +9,8 @@
     padding: 10% 15%;
     /*background: yellow;*/
     display: flex;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .d-o-img-container {
     width: 30vw;
@@ -43,6 +43,8 @@
     width: 12vw;
     height: 5vh;
     font-size: 18px;
+    background-color: rgb(243, 149, 61);
+    cursor: pointer;
 
 }
 .swiper {

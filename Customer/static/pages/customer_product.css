@@ -1,20 +1,21 @@
 .c_container{
-    width: 79vw;
-    padding: 7% 10% ;
+    width: 88vw;
+    padding: 7% 5% ;
     /*background: #3cff00;*/
     display: flex;
     position: relative;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .c_img_container {
-    position: fixed;
+    /* position: fixed; */
     /*position: relative;*/
     width: 20vw;
     height: 60vh;
+    margin-left: 50px;
     /*background: #003366;*/
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     padding: 2%;
     z-index: 2;
 
@@ -22,11 +23,12 @@
 .c_info_container {
     /*margin-top: 5.5vh;*/
     width: 50vw;
-    margin-left: 30vw;
+    /* margin-left: 30vw; */
+   margin-left: 150px;
     /*background: red;*/
     padding: 1%;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 
 }
 
@@ -58,14 +60,16 @@
 .c_submit {
     position: absolute;
     top: 87vh;
-    left: 100px;
+    left: 50px;
 }
 .c_submit button {
     padding: 10px;
     width: 200px;
     font-size: 20px;
-    position: fixed;
+    /* position: fixed; */
     border-radius: 50px;
+    background: #edbe5add;
+    cursor: pointer;
 
 }
 
@@ -76,7 +80,8 @@
     z-index: 10;
     height: 81vh;
     position: absolute;
-    margin-left: 30vw;
+    /* margin-left: 30vw; */
+    margin-left: 150px;
     padding: 1%;
     /*display: none;*/
     /*display: none;*/
@@ -90,5 +95,4 @@
     /*set the size of the lens:*/
     width: 100px;
     height: 100px;
-
 }
