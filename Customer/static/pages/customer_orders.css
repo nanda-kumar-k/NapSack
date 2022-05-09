@@ -72,15 +72,16 @@
     margin: 2vh 2vw;
     height: 20vh;
     padding: 1%;
-    /margin-bottom: 20px;
+    /* /margin-bottom: 20px; */
     /*background:linear-gradient(rgb(168, 247, 247),white);*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .orders-each-product-img {
-    width: 8vw;
+    /* width: 8vw; */
     height: 17.5vh;
     padding: 1%;
-    /*background: white;*/
+    width: 150px;
+    background: red;
 }
 .orders-each-product-img img {
     width: 100%;

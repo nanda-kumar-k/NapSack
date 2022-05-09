@@ -49,14 +49,13 @@
                             {% if forloop.last %}
                                     {% for i in ordinfo %}
                                     <div class="orders-products">
-
                                         <div class="orders-each-product">
                                             <div class="orders-each-product-img">
                                                 <img src="{% static 'images/item.jpg' %}" />
                                             </div>
                                             <div class="orders-each-product-info">
                                                 <h3>{{ i.Categorie }}</h3>
-                                                <h2>{{ i.name }}</h2>
+                                                <h3>{{ i.name }}</h3>
 
                                                  <br>
                                                 <table>

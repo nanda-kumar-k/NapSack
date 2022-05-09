@@ -10,31 +10,31 @@ AUTH_TOKEN = ''
 api = Instamojo(api_key='2730e85d125f7bd19d114690cce9be5c',
                     auth_token='8c74c74003ddda5ca4f6d787ac06fa9c')
 
-payment_request_id_verify= ""
+payment_request_id_verify= "669dcfe55a2e496fb88f34f300fdb545"
 
 customer_order_id = ""
 
 def get_payment_url(amount, currentuser):
-    userinfo = models.CustomerUsers.objects.filter(user_id=currentuser).values()
-    data = userinfo[0]
-    response = api.payment_request_create(
-        buyer_name=data['username'],
-        phone=data['phone_number'],
-        email=data['email'],
-        purpose='NapSack Order Payment',
-        amount=9,
-        send_email=True,
-        send_sms=True,
-        allow_repeated_payments=False,
-        redirect_url="http://127.0.0.1:8000/customer/payment/"
-    )
-    # print(response)
-    url = response['payment_request']['longurl']
-    payment_request_id = response['payment_request']['id']
-    # pay_url_id = 'https://www.instamojo.com/@napsack/669dcfe55a2e496fb88f34f300fdb545'
-    global payment_request_id_verify
-    payment_request_id_verify = payment_request_id
-    pay_url_id = url
+    # userinfo = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+    # data = userinfo[0]
+    # response = api.payment_request_create(
+    #     buyer_name=data['username'],
+    #     phone=data['phone_number'],
+    #     email=data['email'],
+    #     purpose='NapSack Order Payment',
+    #     amount=9,
+    #     send_email=True,
+    #     send_sms=True,
+    #     allow_repeated_payments=False,
+    #     redirect_url="http://127.0.0.1:8000/customer/payment/"
+    # )
+    # # print(response)
+    # url = response['payment_request']['longurl']
+    # payment_request_id = response['payment_request']['id']
+    pay_url_id = 'https://www.instamojo.com/@napsack/669dcfe55a2e496fb88f34f300fdb545'
+    # global payment_request_id_verify
+    # payment_request_id_verify = payment_request_id
+    # pay_url_id = url
     return pay_url_id
 
 
