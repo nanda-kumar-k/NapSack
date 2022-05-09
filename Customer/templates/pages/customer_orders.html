@@ -5,11 +5,11 @@
 {% endblock css %}
 {% block itemscontainers %}
     <div class="orders-container">
-        <div class="orders-inner">
+            <h1 style="text-align:center ;">Orders</h1>
             {% for ords in data %}
+            <div class="order-each">
                 {% for key, ordinfo  in ords.items %}
                     {% if forloop.first %}
-                        <div class="order-each">
                             <div class="orders-inner-date">
                                 <p style="margin-left: 20px">Order# {{ ordinfo.order_id }}</p>
                                 <div style="position: absolute;right: 20px;"><p>{{ ordinfo.status }} </p></div>
@@ -18,17 +18,14 @@
                                 <div class="orders-bill-info-deliver-address">
                                     <h3>Shipping Address</h3>
                                     <br>
-                                    <p>Nanda kumar</p>
-                                    <p>KL University boys hostel</p>
-                                    <p>Green Fields, vaddeswaram,Guntur dist,Andhra pradesh 522502</p>
-                                    <p>MANGALAGIRI, ANDHRA PRADESH 522502</p>
-                                    <p>India</p>
+                                    <p>{{ ordinfo.name }}</p>
+                                    <p>{{ ordinfo.phone }}</p>
+                                    <p>{{ ordinfo.email }}</p>
                                 </div>
                                 <div class="orders-bill-info-payments">
                                     <h3>Payment Method</h3>
                                     <br>
-                                    <p>Pay on Delivery (Cash/Card). Cash on delivery (COD) available.
-                                        Card/Net banking acceptance subject to device availability.</p>
+                                    <p>{{ ordinfo.status }}</p>
                                 </div>
                                 <div class="orders-bill-info-summary">
                                     <h3>Order Summary</h3>
@@ -46,18 +43,16 @@
                                 </div>
                             </div>
                     {% endif %}
+                           
                             {% if forloop.last %}
                                     {% for i in ordinfo %}
-                                    <div class="orders-products">
                                         <div class="orders-each-product">
                                             <div class="orders-each-product-img">
-                                                <img src="{% static 'images/item.jpg' %}" />
+                                                <img src="{{ i.img.image.url }}" />
                                             </div>
                                             <div class="orders-each-product-info">
                                                 <h3>{{ i.Categorie }}</h3>
                                                 <h3>{{ i.name }}</h3>
-
-                                                 <br>
                                                 <table>
                                                     <tr>
                                                         <td><h3>Cost:</h3></td>
@@ -70,17 +65,12 @@
                                                 </table>
                                             </div>
                                         </div>
-
-                                    </div>
+                                        
                                     {% endfor %}
                              {% endif %}
+                             <br>
                 {% endfor %}
+            </div>
             {% endfor %}
-         </div>
-        </div>
-
-        <div class="orders-recommendations">
-
-        </div>
     </div>
 {% endblock itemscontainers %}

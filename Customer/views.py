@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse
 from . import forms
 from Agents.AgentsFunctions import phone_verify, password_check
@@ -40,12 +41,12 @@ def Phoneverify(request):
 
 
 def OtpVerify(request):
-    if request.method == 'POST':
-        otp = request.POST['otp']
-        if otp == str(temp):
-            return redirect(reverse('Register'))
-        else:
-            return HttpResponse("<h1>wrong</h1>")
+    # if request.method == 'POST':
+    #     otp = request.POST['otp']
+    #     if otp == str(temp):
+    #         return redirect(reverse('Register'))
+    #     else:
+    #         return HttpResponse("<h1>wrong</h1>")
     return render(request, "forms/otpverify.html")
 
 votp = 0
@@ -118,7 +119,7 @@ def Logins(request):
             temp = check[0]
             cart_bill_data = []
             currentuser = temp['user_id']
-            print(currentuser)
+            models.CustomerCart.objects.filter(customerusername=currentuser).delete()
             # return redirect('customers:shop')
             return render(request, "maps/current_location.html")
         else:
@@ -225,10 +226,21 @@ def Orders(request):
     for oinfo in orderinfo:
         temp = {}
         t1 = oinfo
+        user_info = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+        user_info_one = user_info[0]
+        t1['name'] = user_info_one['name']
+        t1['phone'] = user_info_one['phone_number']
+        t1['email'] = user_info_one['email']
         orders_products = models.CustomerProducts.objects.filter(customerorders=oinfo['order_id']).values()
+        temp_products = []
+        for i in orders_products:
+            img_url = models.CustomerProducts.objects.get(customer_product_id=i['customer_product_id'])
+            t = i
+            t['img'] = img_url
+            temp_products.append(t)
         t1['no_of_items'] = len(orders_products)
         temp['order_info'] = t1
-        temp['order_products'] = orders_products
+        temp['order_products'] = temp_products
         data.append(temp)
     return render(request, "pages/customer_orders.html", {'data':data})
 
@@ -271,6 +283,7 @@ def CartData():
         Np = Napproducts.objects.filter(product_id=Ap_one['product_id_id']).values()
         img_url = Napproducts.objects.get(product_id=Ap_one['product_id_id'])
         Np_one = Np[0]
+        temp_p['nap_product_id'] = Np_one['product_id']
         temp_p['Categories_name'] = Ap_one['Categories_name']
         temp_p['product_name'] = Np_one['name']
         temp_p['img'] = img_url
@@ -303,9 +316,8 @@ def CartBill(request, quantity):
     if currentuser or shopid or lat or long:
         redirect('customers:login')
     d = CartData()
-    print("44444444444444444444444444444444444444444444444444444444444444444444444444")
-    print(len(d))
     global cart_bill_data
+    cart_bill_data = []
     i = 3
     products_cost = 0
     for qt in d:
@@ -315,10 +327,10 @@ def CartBill(request, quantity):
         cart_bill_data.append(temp_data)
         i = i + 1
     cart_bill_data.append(products_cost)
-    pay_url = payments.get_payment_url(products_cost, currentuser)
+    # pay_url = payments.get_payment_url(products_cost, currentuser)
     userinfo = models.CustomerUsers.objects.filter(user_id=currentuser).values()
     userinfo_one = userinfo[0]
-    userinfo_one['pay_url'] = pay_url
+    # userinfo_one['pay_url'] = pay_url
     userinfo_one['cost'] = products_cost
     userinfo_one['total_items'] = len(d)
     total_data = {
@@ -331,7 +343,11 @@ def CartBill(request, quantity):
     print(len(cart_bill_data))
     return render(request, 'pages/delivery_option.html', {'data':total_data})
 
-
+def PayNow (request):
+    l = len(cart_bill_data)
+    pro_cost = cart_bill_data[l-1]
+    pay_url = payments.get_payment_url(pro_cost , currentuser)
+    return HttpResponseRedirect(pay_url)
 
 def PaymentVerifyRequest(request,p):
     if currentuser or shopid or lat or long:
@@ -355,7 +371,7 @@ def CashOnDeliveryRequest(request):
         redirect('customers:login')
     cartfunctions.UpdateCOD(currentuser,lat, long,cart_bill_data,shopid)
     cart_bill_data.clear()
-    return HttpResponse("<h1>COD Done</h1>")
+    return redirect('customers:Orders')
 
 
 

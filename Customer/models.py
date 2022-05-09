@@ -1,3 +1,4 @@
+from email.mime import image
 import uuid
 from django.utils.timezone import now
 from django.db import models
@@ -68,6 +69,7 @@ class CustomerProducts(models.Model):
     cost = models.IntegerField()
     quantity = models.PositiveSmallIntegerField()
     customerorders = models.ForeignKey(CustomerOrders, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images', default="customer_products.jpg")
 
 
 

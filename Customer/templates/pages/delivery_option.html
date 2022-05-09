@@ -11,7 +11,7 @@
         rel="stylesheet"
         href="https://unpkg.com/swiper/swiper-bundle.min.css"
 />
-
+<link rel="stylesheet" href="sweetalert2.min.css">
 {% endblock css %}
 {% block itemscontainers %}
     <div class="d-o-container">
@@ -73,8 +73,9 @@
                         <h3> * Select a payment method</h3>
                         <br>
                         <div class="pay-select-container">
-                            <a href="{% url 'customers:cashonedelivery' %}"><button style="margin-right: 70px">Pay on Delivery</button></a>
-                            <a href="{{ i.pay_url }}"><button style="margin-right: -30px">Pay Now</button></a>
+                            <button onclick="conformpod()" id="Url"  data-url="{% url 'customers:cashonedelivery' %}" style="margin-right: 70px">Pay on Delivery</button>
+                            <a href="{% url 'customers:paynow' %}"><button style="margin-right: -30px">Pay Now</button></a>
+                            <!-- <a href="{{ i.pay_url }}"><button style="margin-right: -30px">Pay Now</button></a> -->
 <!--                             <a href="-->
 <!--http://127.0.0.1:8000/customer/payment/?payment_id=MOJO2426W05Q20487814&payment_status=Credit&payment_request_id=b5ede769cd624012b084c04f004a89f9"><button style="margin-right: -30px">Pay Now</button></a>-->
                         </div>
@@ -84,7 +85,9 @@
         </div>
     </div>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+<script src="sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Initialize Swiper -->
 <script>
     var swiper = new Swiper(".mySwiper", {
@@ -103,5 +106,34 @@
             prevEl: ".swiper-button-prev",
         },
     });
+        function conformpod(){
+            let timerInterval
+            Swal.fire({
+            title: 'Order Conforming....',
+            text: 'NapSack.in',
+            imageUrl: 'http://127.0.0.1:8000/media/anothers/orderconformation.jpg',
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+                }, 3000)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+            }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                var url = $("#Url").attr("data-url");
+                document.location.href = url
+            }
+            })
+    }
+
 </script>
 {% endblock itemscontainers %}

@@ -3,6 +3,7 @@ from Agents.models import AgentOrders, AgentOrdersProducts, AgentShopCategorie, 
 from . import payments
 import uuid
 from Dealer.models import DealerOrders, DealertLocation, DealerUsers
+from NapsackAdmin.models import Products as NapProducts
 from . import locationfunctions
 #
 # def updatecart(data):
@@ -101,13 +102,17 @@ def UpdateCOD(user_id,lat, long,data,shop_id):
     print(len(data))
     for i in range(0, len(data) - 1):
         pro = data[i]
+        pro_id = pro['nap_product_id']
+        nap_pro = NapProducts.objects.filter(product_id=pro_id).values()
+        nap_one = nap_pro[0]
+        img_url = nap_one['image']
         corderproduct = models.CustomerProducts(
             name=pro['product_name'], Categorie=pro['Categories_name'],
-            cost=pro['cost'], quantity=pro['qty_selected'], customerorders=corder_get)
+            cost=pro['cost'], quantity=pro['qty_selected'], customerorders=corder_get, image=img_url)
         corderproduct.save()
         aorderproduct = AgentOrdersProducts(
             agentorders=aorder_get, name=pro['product_name'],
             Categorie=pro['Categories_name'], cost=pro['cost'], quantity=pro['qty_selected']
         )
         aorderproduct.save()
-    models.CustomerCart.objects.filter(customerusername=un).delete()
+    models.CustomerCart.objects.filter(customerusername=un).delete()   

@@ -12,6 +12,7 @@ urlpatterns = [
     path('addtocart/<uuid:uuid_id>/', views.AddtoCart, name="addtocart"),
     path('removecart/<uuid:uuid_id>/', views.RemoveCart, name="removecart"),
     path('cartbill/<str:quantity>/', views.CartBill, name="cartbill"),
+    path('paynow/', views.PayNow, name="paynow"),
     path('login/', views.Logins, name="login"),
     path('register/', views.Registers, name="register"),
     path('orders/', views.Orders, name="Orders"),

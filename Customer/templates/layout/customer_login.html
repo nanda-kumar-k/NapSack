@@ -19,9 +19,11 @@
 </head>
 <body>
     <div class="base-navbar-container">
-        <div class="navbar-log">
+        <a href="{% url 'customers:shop' %}">
+        <div class="navbar-log" >
             <img src="{% static 'images/logo.png'  %}">
         </div>
+        </a>
         <div class="navbar-search-container">
             <input type="text" >
             {% bs_icon 'search' size='1.5em' %}
@@ -34,16 +36,16 @@
             {% bs_icon 'person-bounding-box' size='1.5em' %}
             <a href="{% url 'agents:AgentsLogin' %}" style="color: inherit;text-decoration: inherit;"><p style="margin-left: 3px">Be a Agent</p></a>
         </div>
-        <div class="navbar-info" style="width: 150px;">
+        <div class="navbar-info" style="width: 120px;">
             {% bs_icon 'person-rolodex' size='1.8em' %} 
-            <div class="navbar">
+            <div class="navbar" style="margin-left: 10px;"> 
                 <div class="dropdown">
-                    <button class="dropbtn">nanda kumar 
+                    <button class="dropbtn" >    
                     <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <br>
-                    <a href="#">orders</a>
+                    <a href="{% url 'customers:Orders' %}">orders</a>
                     <a href="#">Profile</a>
                     <a href="{% url 'customers:logout' %}">Logout</a>
                     <br>

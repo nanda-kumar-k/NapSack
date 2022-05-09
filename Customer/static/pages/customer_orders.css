@@ -1,21 +1,18 @@
 .orders-container {
-    padding: 6vh 3vw 6vh 6vw;
-    width: 91vw;
-    display: flex;
-    margin-top: 9vh;
+    width: 63.5vw;
+    padding: 6vh 17.5vw 6vh 17.5vw;
+    align-items: center;
+    margin-top: 5vh;
     /*background-color: orange;*/
     overflow-x: hidden;
 }
 
-.orders-inner {
-    width: 65vw;
-    /*background: #006b1b;*/
-}
+
 .order-each {
     width: 65vw;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     /*background:linear-gradient(rgb(168, 247, 247),white);*/
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 .orders-inner-date {
     display: flex;
@@ -34,7 +31,7 @@
     display: flex;
     /*background: orange;*/
     width: 63.75vw;
-    height: 25vh;
+    height: 20vh;
     padding: 1%;
     /*background:linear-gradient(rgb(168, 247, 247),white);*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -60,11 +57,7 @@
 .orders-bill-info-summary td{
     padding: 2%;
 }
-.orders-products {
-    /*background: brown;*/
-    /*background:linear-gradient(rgb(168, 247, 247),white);*/
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-}
+
 .orders-each-product {
     display: flex;
     /*background: #003366;*/
@@ -74,14 +67,14 @@
     padding: 1%;
     /* /margin-bottom: 20px; */
     /*background:linear-gradient(rgb(168, 247, 247),white);*/
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 .orders-each-product-img {
-    /* width: 8vw; */
+    width: 8vw;
     height: 17.5vh;
     padding: 1%;
-    width: 150px;
-    background: red;
+    /* width: 150px; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .orders-each-product-img img {
     width: 100%;
@@ -89,14 +82,10 @@
 }
 .orders-each-product-info {
     padding: 1% 1% 1% 3%;
+    width: 51.75vw;
 }
 .orders-each-product-info td{
     padding: 2%;
     width: 100px;
 }
-.orders-recommendations {
-    background: red;
-    width: 30vw;
-    margin-left: 4vw;
-    height: 50vh;
-}
+
