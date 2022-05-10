@@ -1,0 +1,98 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/customer_shops.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock css %}
+{% block itemscontainers %}
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{% static 'images/img9.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img10.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img11.jpg' %}"></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="shops-container">
+        <div class="shops-left">
+            <br>
+            <div >
+                <h1 style="text-align: center"> Shop Categories </h1>
+                <hr>
+            </div>
+            <br>
+            <ul>
+                {% for  v in data %}
+                    {% if forloop.first %}
+                        {% for j in v %}
+                            <li><a href="{% url 'customers:specificshop'  j.agent_shop_categorie_id  %}"><b>{{ j.name }}</b></a></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <br>
+            <br>
+        </div>
+        <div class="searchresult">
+            <h1 style="text-align: center;">...Search Result...</h1>
+            <hr>
+            <div class="shops-right">
+                {% for v in data %}
+                {% if forloop.last %}
+                    {% for j in v %}
+                        <a href="{% url 'customers:products'  j.agent_id  %}">
+                        <div class="shops-card">
+                            <img src="{{ j.img.image.url }}">
+                            <div class="shops-card-info">
+                                <h3 style="color:black">{{ j.name }}</h3>
+                                <marquee width="100%" direction="left">
+                                <h2 style="color:black">{{ j.agent_shop_name }}</h2>
+                                </marquee>
+                            </div>
+                        </div>
+                        </a>
+                {% endfor %}
+                        {% endif %}
+                {% endfor %}
+            </div>
+        </div> 
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+{% endblock itemscontainers %}

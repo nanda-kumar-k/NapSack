@@ -25,8 +25,12 @@
         </div>
         </a>
         <div class="navbar-search-container">
-            <input type="text" >
-            {% bs_icon 'search' size='1.5em' %}
+            <form action="{% url 'customers:shopsearch' %}" method="post" >
+                {% csrf_token %}
+                <input type="text" placeholder="Search For Shops" name="search">
+                <button type="submit" style="border: none; background-color: #3498db;">{% bs_icon 'search' size='1.5em' %}</button>
+            </form>
+            
         </div>
         <div class="navbar-info">
             {% bs_icon 'truck' size='1.5em' %}

@@ -26,31 +26,45 @@
         <br>
         <br>
     </div>
-    <div class="slider-right"  >
-        {% for v in data %}
-            {% if forloop.last %}
-                {% for j in v %}
-                    <div class="container">
-                        <div class="img-container">
-                            <img src= "{{ j.img.image.url }}" alt="">
-                            <div class="product-cost">
-                                <h2>offer:{{ j.offer }}% | {{ j.offercost }} </h2>
+    <div class="display-products-container">
+        <div class="product-search-conatiner">
+            <form action="{% url 'customers:productsearch' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="Search" >
+                <button type="submit" style="border: none;">{% bs_icon 'search' size='1.5em' %}</button>
+            </form>
+        </div>
+        <br>
+        <hr>
+        <br>
+
+        <div class="slider-right">
+            {% for v in data %}
+                {% if forloop.last %}
+                    {% for j in v %}
+                        <div class="container">
+                            <div class="img-container">
+                                <img src= "{{ j.img.image.url }}" alt="">
+                                <div class="product-cost">
+                                    <h2>offer:{{ j.offer }}% | {{ j.offercost }} </h2>
+                                </div>
                             </div>
+                            <div class="social-media">
+                                <li><a onclick="fun()" id="Url"  data-url="{% url 'customers:addtocart'  j.agent_product_id  %}" href="#" >{% bs_icon 'cart3' size='1.5em' %}</a></li>
+                                <li><a href="{% url 'customers:product'  j.agent_product_id  %}">{% bs_icon 'search' size='1.5em' %}</a></li>
+                            </div>
+                            <div class="user-info">
+                                <br>
+                                <h4>{{ j.product_name }} </h4>
+                            </div>
+                            
                         </div>
-                        <div class="social-media">
-                            <li><a onclick="fun()" id="Url"  data-url="{% url 'customers:addtocart'  j.agent_product_id  %}" href="#" >{% bs_icon 'cart3' size='1.5em' %}</a></li>
-                            <li><a href="{% url 'customers:product'  j.agent_product_id  %}">{% bs_icon 'search' size='1.5em' %}</a></li>
-                        </div>
-                        <div class="user-info">
-                            <br>
-                            <h4>{{ j.product_name }} </h4>
-                        </div>
-                        
-                    </div>
-                    {% endfor %}
-            {% endif %}
-        {% endfor %}
+                        {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
+    
 </div>
 <script src="sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>

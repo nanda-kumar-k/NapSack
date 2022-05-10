@@ -29,7 +29,9 @@ urlpatterns = [
     path('deliveryoption/', views.DeliveryOption, name="deliveryoption"),
     re_path(r'^payment/(?P<p>.*)$', views.PaymentVerifyRequest),
     path('cashondeliver/', views.CashOnDeliveryRequest, name="cashonedelivery"),
-    path('logout/', views.LogOut, name="logout")
+    path('logout/', views.LogOut, name="logout"),
+    path('shopsearch/', views.ShopSearch, name="shopsearch"),
+    path('productsearch/', views.ProductSearch, name="productsearch"),
 ]
 
 # if settings.DEBUG:

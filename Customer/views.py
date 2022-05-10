@@ -1,5 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse
+from . import shopsearch
+
+from Customer.shopsearch import search
 from . import forms
 from Agents.AgentsFunctions import phone_verify, password_check
 from . import models
@@ -177,6 +180,8 @@ def LogOut(request):
     cart_bill_data = []
     return redirect('customers:firstgome')
 
+
+        
 def FindCat():
     d = locationfunctions.shoploc(lat, long)
     temp1 = []
@@ -186,6 +191,16 @@ def FindCat():
             temp1.append(cname['name'])
             temp.append(cname)
     return temp
+
+def ShopSearch(request):
+    if request.method == "POST":
+        pattern = request.POST['search']
+        d = shopsearch.SearchFind(pattern, lat, long)
+    else:
+        d = []
+    c = FindCat()
+    data =[c,d]
+    return render(request, "pages/shopsearch.html", {"data": data})
 
 def Findshops(id):
     d = locationfunctions.shoploc(lat, long)
@@ -451,8 +466,22 @@ def Products(request, uuid_id):
     d = ProductsFilter("firstone")
     c = ProductsCatFilter()
     data = [c, d]
-    print("delalsnldfnllfslkfjbsjflkhdslhsdkfbjhvsgfvskfhvksdjfhvoifidhfkusfgbsoijfidlanwdKABkjhbfkj.hdfl.jzsd,NBKCjdhskuffffhndks.jcbnk")
-    print(d)
+    return render(request, 'pages/customer_products.html', {'data':data})
+
+
+def ProductSearch(request):
+    if request.method == "POST":
+        pattern = request.POST['search']
+        all_products = ProductsCat()
+        q = 3
+        d = []
+        for oneshop in all_products:
+            if shopsearch.search(pattern, oneshop['product_name'].lower(), q) :
+                d.append(oneshop)
+    else:
+        d = []
+    c = ProductsCatFilter()
+    data =[c,d]
     return render(request, 'pages/customer_products.html', {'data':data})
 
 
