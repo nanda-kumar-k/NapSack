@@ -372,8 +372,6 @@ def PaymentVerifyRequest(request,p):
     payment_status = request.GET['payment_status']
     if payments.verify_payment(payment_id,payment_request_id):
         payments.UpdatePayments(payment_id,payment_request_id,payment_status,currentuser,lat, long )
-        print("tqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-        print(len(cart_bill_data))
         cartfunctions.updateorders(cart_bill_data,currentuser,shopid, lat, long)
         return HttpResponse("<h1>Payment Done</h1>")
     else:
@@ -428,8 +426,6 @@ def ProductsCat():
 def ProductsFilter(cat_id):
     data = []
     d = ProductsCat()
-    print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
-    print(d)
     temp_uuid = cat_id
     if cat_id == "firstone":
         temp_data = d[0]
