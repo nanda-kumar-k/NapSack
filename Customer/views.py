@@ -221,7 +221,8 @@ def Shops(request):
     d = Findshops("fristshop")
     c = FindCat()
     data =[c,d]
-    return render(request, "pages/customer_shops.html", {'data':data})
+    # return render(request, "pages/customer_shops.html", {'data':data})
+    return render(request, "pages/shopsnotfind.html", {'data':data})
 
 
 def SpecificShop(request, uuid_id):
@@ -236,7 +237,8 @@ def SpecificShop(request, uuid_id):
 def Orders(request):
     if currentuser or shopid or lat or long:
         redirect('customers:login')
-    orderinfo = models.CustomerOrders.objects.filter(customerusername=currentuser).values()
+    order_ass = models.CustomerOrders.objects.filter(customerusername=currentuser).order_by('oder_date').values()
+    orderinfo = order_ass[::-1]
     data = []
     for oinfo in orderinfo:
         temp = {}

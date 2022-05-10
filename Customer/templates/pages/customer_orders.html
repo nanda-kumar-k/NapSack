@@ -11,8 +11,12 @@
                 {% for key, ordinfo  in ords.items %}
                     {% if forloop.first %}
                             <div class="orders-inner-date">
-                                <p style="margin-left: 20px">Order# {{ ordinfo.order_id }}</p>
-                                <div style="position: absolute;right: 20px;"><p>{{ ordinfo.status }} </p></div>
+                                <p style="margin-left: 20px"><b>Order# {{ ordinfo.order_id }}</b></p>
+                                <div style="position: absolute;right: 20px;"><b><p>delivery date :{{ ordinfo.delivery_date }} </p></b></div>
+                            </div>
+                            <div class="orders-inner-date" style="height:20px;margin-top: 10px;">
+                                <p style="margin-left: 20px"><b>Status: {{ ordinfo.status }}</b></p>
+                                <div style="position: absolute;right: 20px;"><b><p>Order date :{{ ordinfo.oder_date }} </p></b></div>
                             </div>
                             <div class="orders-bill-info">
                                 <div class="orders-bill-info-deliver-address">
@@ -25,7 +29,7 @@
                                 <div class="orders-bill-info-payments">
                                     <h3>Payment Method</h3>
                                     <br>
-                                    <p>{{ ordinfo.status }}</p>
+                                    <p>{{ ordinfo.payment_mode }}</p>
                                 </div>
                                 <div class="orders-bill-info-summary">
                                     <h3>Order Summary</h3>

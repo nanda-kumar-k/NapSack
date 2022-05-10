@@ -127,7 +127,7 @@ def UpdateCOD(user_id,lat, long,data,shop_id):
     un = models.CustomerUsers.objects.get(user_id=user_id)
     cus_pay_update = models.CustomerOrders(order_id=te_uuid,
                                            payment_id="Cash and Delivery",status="Order Placed",bill=data[l - 1],
-                                           customerusername=un, longitude= long,latitude=lat, payment_mode="Online Payment", delivery_date=deliver_time)
+                                           customerusername=un, longitude= long,latitude=lat, payment_mode="Pay on Delivery", delivery_date=deliver_time)
     cus_pay_update.save()
     # Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shop_id).values()
     # uid_one = Auid[0]
