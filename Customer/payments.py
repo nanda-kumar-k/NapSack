@@ -10,7 +10,7 @@ AUTH_TOKEN = ''
 api = Instamojo(api_key='2730e85d125f7bd19d114690cce9be5c',
                     auth_token='8c74c74003ddda5ca4f6d787ac06fa9c')
 
-payment_request_id_verify= "669dcfe55a2e496fb88f34f300fdb545"
+payment_request_id_verify= "b5ede769cd624012b084c04f004a89f9"
 
 customer_order_id = ""
 
@@ -31,10 +31,11 @@ def get_payment_url(amount, currentuser):
     # # print(response)
     # url = response['payment_request']['longurl']
     # payment_request_id = response['payment_request']['id']
-    pay_url_id = 'https://www.instamojo.com/@napsack/669dcfe55a2e496fb88f34f300fdb545'
+    # pay_url_id = 'https://www.instamojo.com/@napsack/669dcfe55a2e496fb88f34f300fdb545'
     # global payment_request_id_verify
     # payment_request_id_verify = payment_request_id
     # pay_url_id = url
+    pay_url_id = "http://127.0.0.1:8000/payment/?payment_id=MOJO2426W05Q20487814&payment_status=Credit&payment_request_id=b5ede769cd624012b084c04f004a89f9"
     return pay_url_id
 
 

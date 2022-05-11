@@ -1,0 +1,109 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/shopsnotfind.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock css %}
+{% block itemscontainers %}
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{% static 'images/img9.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img10.jpg' %}"></div>
+            <div class="swiper-slide"><img src="{% static 'images/img11.jpg' %}"></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <br>
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div style="height: 40px;width: 100%;color: rgb(254, 169, 0);text-align: center;">
+            <h1>{{message}}</h1>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div class="not-found-mssg">
+        <div class="man-container">
+            <div class="man">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="feet">
+                  <div class="foot"></div>
+                  <div class="foot"></div>
+                </div>
+              </div>
+        </div>
+        <div class="message-container">
+            <h1>
+                Sorry....!
+            </h1>
+            <h2>
+                We can't find the shop you are looking for.
+            </h2>
+            <p>
+                Please fill the form below to inform us about the shop and products you are looking for.
+            </p>
+            <p>
+                We will contact you as soon as possible.
+            </p>
+            <br>
+            <h2>
+                Thank you.
+            </h2>
+            <br>
+            <span class="animation-text-wipe animate-in anim-delay-2"><p>
+                We have a games for you.<a href="#">Click here</a>
+            </p>
+            </span>
+            <span class="animation-text-wipe animate-in anim-delay-2"><p>
+                Have a fun with our games.
+            </p>
+        </span>
+        </div>
+    </div>
+    <div class="feedback-form">
+       <div class="img-container">
+              <img src="{% static 'images/pages/mssg.jpg' %}">
+       </div>
+       <div class="form-container">
+           <img src="{% static 'images/napsacklogo.png' %}">
+           <br>
+           <br>
+        <form action="{% url 'customers:shopnotfound' %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name"> <br>
+            <input type="text" placeholder="Email" name="email"> <br>
+            <input type="text" placeholder="Phone" name="phone"> <br>
+            <textarea placeholder="shop and products you are looking for" name="message"></textarea> <br>
+            <input type="submit" value="Send" style="text-align: center; background-color: darkorange;">
+        </form>
+       </div>
+    </div>
+    
+    
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+{% endblock itemscontainers %}

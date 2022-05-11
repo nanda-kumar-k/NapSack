@@ -1,3 +1,5 @@
+import email
+from email import message
 from email.mime import image
 import uuid
 from django.utils.timezone import now
@@ -72,9 +74,15 @@ class CustomerProducts(models.Model):
     image = models.ImageField(upload_to='images', default="customer_products.jpg")
 
 
-
-
-
+class FeedBack(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=20)
+    message = models.TextField()
+    user = models.UUIDField()
+    
+    def __str__(self):
+        return self.name
 
 
 

@@ -37,11 +37,12 @@
             <br>
         </div>
         <div class="searchresult">
-            <h1 style="text-align: center;">...Search Result...</h1>
+            <h1 style="text-align: center;">Search Result</h1>
             <hr>
             <div class="shops-right">
                 {% for v in data %}
                 {% if forloop.last %}
+                    {% if v %}
                     {% for j in v %}
                         <a href="{% url 'customers:products'  j.agent_id  %}">
                         <div class="shops-card">
@@ -55,7 +56,10 @@
                         </div>
                         </a>
                 {% endfor %}
-                        {% endif %}
+                {% else %}
+                <h1 style="color: orange;">No Result Found...!</h1>
+                {% endif %}
+                {% endif %}
                 {% endfor %}
             </div>
         </div> 

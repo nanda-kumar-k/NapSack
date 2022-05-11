@@ -8,6 +8,7 @@
 {% block itemscontainers %}
 <h1 class="count" style="display: none; font-size: 0px">{{ data|length }}</h1>
 <div class="cart-container">
+    {% if data %}
         <div class="cart-lists">
             {% for i in data %}
             <div class="cart-each-product">
@@ -32,7 +33,7 @@
             {% endfor %}
 
         </div>
-
+    
         <div class="cart-info">
             <div class="cart-info-bill-details" >
                 <br>
@@ -64,6 +65,14 @@
                 <h1 onclick="getqty()">Place Order</h1>
             </div>
         </div>
+        {% else %}
+        <div>
+            <h1>No Items in Cart</h1>
+            <br>
+            <h1 style="color: orange;">Get Products From Nearest Shop With in 2-3 hours</h1> <br>
+        <h1 style="color: orange;"><a href="{% url 'customers:shop' %}"> Click Her </a> To Find The Shops</h1>
+        </div>
+        {% endif %}
 </div>
 <script src="sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>

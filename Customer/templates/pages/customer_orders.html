@@ -6,6 +6,7 @@
 {% block itemscontainers %}
     <div class="orders-container">
             <h1 style="text-align:center ;">Orders</h1>
+            {% if data %}
             {% for ords in data %}
             <div class="order-each">
                 {% for key, ordinfo  in ords.items %}
@@ -76,5 +77,13 @@
                 {% endfor %}
             </div>
             {% endfor %}
+            {% else %}
+        <div>
+            <h1>No Orders Founds...!</h1>
+            <br>
+            <h1 style="color: orange;">Get Products From Nearest Shop With in 2-3 hours</h1> <br>
+        <h1 style="color: orange;"><a href="{% url 'customers:shop' %}"> Click Her </a> To Find The Shops</h1>
+        </div>
+        {% endif %}
     </div>
 {% endblock itemscontainers %}

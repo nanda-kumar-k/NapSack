@@ -1,3 +1,4 @@
+import email
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse
 from . import shopsearch
@@ -221,8 +222,8 @@ def Shops(request):
     d = Findshops("fristshop")
     c = FindCat()
     data =[c,d]
-    # return render(request, "pages/customer_shops.html", {'data':data})
-    return render(request, "pages/shopsnotfind.html", {'data':data})
+    return render(request, "pages/customer_shops.html", {'data':data})
+    # return render(request, "pages/shopnotfound.html")
 
 
 def SpecificShop(request, uuid_id):
@@ -271,7 +272,7 @@ def AddtoCart(request, uuid_id):
     # Aun = uid_one['username_id']
     find =  models.CustomerCart.objects.filter(product_id=uuid_id).values()
     if find:
-        return redirect('customers:products ' ,shopid)  # redirect to products page
+        return redirect('customers:products',shopid)  # redirect to products page
     else:
         s = models.CustomerCart(customerusername=un, shop_id=shopid, product_id=uuid_id)
         s.save()
@@ -546,3 +547,19 @@ def DeliveryOption(request):
     if currentuser or shopid or lat or long:
         redirect('customers:login')
     return render(request, 'pages/delivery_option.html')
+
+
+def ShopNotFound(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        mssg = request.POST['message']
+        form_save = models.FeedBack(name=name, email=email, phone_number=phone, message=mssg, user=currentuser)
+        form_save.save()
+        messages.success(request, f"Your form has been submitted successfully. We will get back to you soon.")
+        return render(request, 'pages/shopnotfound.html')
+    else:
+        return render(request, 'pages/shopnotfound.html')
+        
+        

@@ -41,6 +41,7 @@
         <div class="slider-right">
             {% for v in data %}
                 {% if forloop.last %}
+                    {% if v %}
                     {% for j in v %}
                         <div class="container">
                             <div class="img-container">
@@ -60,6 +61,9 @@
                             
                         </div>
                         {% endfor %}
+                    {% else %}
+                    <h1 style="color: orange;">No Result Found...!</h1>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </div>
