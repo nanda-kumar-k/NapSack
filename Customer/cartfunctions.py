@@ -1,6 +1,5 @@
 from . import models
 from Agents.models import AgentLocation, AgentOrders, AgentOrdersProducts, AgentShopCategorie, AgentsUsers
-from . import payments
 import uuid
 from Dealer.models import DealerOrders, DealertLocation, DealerUsers
 from NapsackAdmin.models import Products as NapProducts

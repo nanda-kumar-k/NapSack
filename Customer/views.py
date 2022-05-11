@@ -374,8 +374,8 @@ def PaymentVerifyRequest(request,p):
     payment_request_id = request.GET['payment_request_id']
     payment_status = request.GET['payment_status']
     if payments.verify_payment(payment_id,payment_request_id):
-        payments.UpdatePayments(payment_id,payment_request_id,payment_status,currentuser,lat, long )
-        cartfunctions.updateorders(cart_bill_data,currentuser,shopid, lat, long)
+        payments.UpdatePayments(payment_id,payment_request_id,payment_status,currentuser,lat, long,cart_bill_data,shopid )
+        # cartfunctions.updateorders(cart_bill_data,currentuser,shopid, lat, long)
         return HttpResponse("<h1>Payment Done</h1>")
     else:
         return HttpResponse("<h1>Contact NapSack People Payment not done</h1>")
