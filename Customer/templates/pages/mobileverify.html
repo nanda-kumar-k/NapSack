@@ -11,26 +11,37 @@
 				<img src="{% static 'images/pages/mobile.png' %}">
 				<h3 class="mb-2">OTP VERIFICATION</h3>
 				<div>
-					<p>code has been send to {{ data.phone_number }}</p>
+					<p>code has been send to {{ data.phone }}</p>
+					<br>
+					<p>Change Mobile Number <a href="{% url 'customers:customerprofile' %}" style="text-decoration: none; color:black">click here</a> </p>
 				</div>
 			</div>
 			
 			<div class="card-body">
 				<br>
-			<form action="{}" method="post">
+			<form action="{% url 'customers:mobileverify' data.info %}" method="post">
 			{% csrf_token %}
 					<div class="input-container">
-						<input type="text" class="m-1 text-center form-control rounded" maxlength="1" name="v1">
-						<input type="text" class="m-1 text-center form-control rounded" maxlength="1" name="v2">
-						<input type="text" class="m-1 text-center form-control rounded" maxlength="1" name="v3">
-						<input type="text" class="m-1 text-center form-control rounded" maxlength="1" name="v4">
-						<input type="text" class="m-1 text-center form-control rounded" maxlength="1" name="v5">
+						<input type="text"  maxlength="1" name="v1">
+						<input type="text"  maxlength="1" name="v2">
+						<input type="text" maxlength="1" name="v3">
+						<input type="text"  maxlength="1" name="v4">
+						<input type="text"  maxlength="1" name="v5">
 					</div>
 				<br>
+				{% if messages %}
+					{% for message in messages %}
+						{% if message.tags == 'error' %}
+						<div style="height: 40px;color: darkred; text-align: center;">
+						<strong>{{message}}</strong>
+						</div>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
 				<div>
 					<p style="font-size: 18px;">
 						didn't get the otp
-						<a href="#" class="text-decoration-none">Resend</a>
+						<a href="{% url 'customers:mobileverify' data.info %}" class="text-decoration-none">Resend</a>
 					</p>
 				</div>
 				<br>

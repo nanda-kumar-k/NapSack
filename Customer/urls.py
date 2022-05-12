@@ -23,7 +23,7 @@ urlpatterns = [
     path('specificcat/<uuid:uuid_id>/', views.SpecificCategory, name="specificcat"),
     path('customerproduct/<uuid:uuid_id>/', views.Product, name ="product"),
     path('currentloc/<str:str_lat>/<str:str_long>/', views.CurrentLoc, name="curloc"),
-    path('mobileverify/', views.MobileVerify, name="mobileverify"),
+    path('mobileverify/<str:str_info>/', views.MobileVerify, name="mobileverify"),
     path('specificshop/<uuid:uuid_id>/', views.SpecificShop, name="specificshop"),
     path('shops/', views.Shops, name="shop"),
     path('deliveryoption/', views.DeliveryOption, name="deliveryoption"),
@@ -35,6 +35,8 @@ urlpatterns = [
     path('shopnotfiund/', views.ShopNotFound, name="shopnotfound"),
     path('customerprofile/', views.CustomerProfile, name="customerprofile"),
     path('customerimage/', views.UpdateProfileImage, name="customerimage"),
+    path('customerforgotpassword/', views.ForgotPassword, name="forgotpassword"),
+    path('customerupdatepassword/', views.UpdateForgotPassword, name="updatepassword"),
 ]
 
 # if settings.DEBUG:

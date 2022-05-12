@@ -27,7 +27,7 @@ long = "80.624908"
 shopid = ""
 cart_bill_data = []
 sp = ""
-
+phone_verification = True
 
 def Phoneverify(request):
     if request.method == 'POST':
@@ -55,11 +55,18 @@ def OtpVerify(request):
     return render(request, "forms/otpverify.html")
 
 votp = 0
-def MobileVerify(request):
+def MobileVerify(request, str_info):
     global votp
-    cuser = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+    if str_info == "new":
+        cuser = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+    else:
+        cuser = models.CustomerUsers.objects.filter(username=str_info).values()
     cuser_one = cuser[0]
     phone_number = cuser_one['phone_number']
+    data = {
+        'phone': phone_number,
+        'info': str_info
+    }
     if request.method == 'POST':
         v1 = request.POST['v1']
         v2 = request.POST['v2']
@@ -68,17 +75,22 @@ def MobileVerify(request):
         v5 = request.POST['v5']
         otp = v1+v2+v3+v4+v5
         if otp == str(votp):
-            return redirect('customers:login')
+            if str_info == "new":
+                models.CustomerUsers.objects.filter(user_id=currentuser).update(phone_verify=True)
+                return redirect('customers:login')
+            else:
+                return redirect('customers:updatepassword')
         else:
             messages.error(request, f" Invalid OTP...! Try Again ")
-            return render(request, 'pages/MobileVerify.html', {'data':phone_number})
+            return render(request, 'pages/MobileVerify.html', {'data':data})
     else:
         # otp = random.randint(10000, 99999)
+        otp = 11111
         # x = requests.request("GET",f'https://2factor.in/API/V1/df1606dc-a515-11ec-a4c2-0200cd936042/SMS/{phone_number}/{otp}/NapSack')
         # s = x.json()
         votp = otp
         # if s['Status'] == "Success":
-        return render(request, 'pages/MobileVerify.html', {'data':phone_number})
+        return render(request, 'pages/MobileVerify.html', {'data':data})
         # else:
         #     return HttpResponse("<h1>try again</h1>")
 
@@ -103,8 +115,8 @@ def Registers(request):
                     global currentuser
                     currentuser = c_user_one['user_id']
                     messages.success(request, f"New account created:")
-                    # return redirect('customers:mobileverify')
-                    return redirect('customers:login')
+                    return redirect('customers:mobileverify', "new")
+                    # return redirect('customers:login')
                 else:
                     # form = forms.ALogin()
                     messages.error(request, f" UserName already exit...! Try Again  ")
@@ -129,13 +141,17 @@ def Logins(request):
         pwd = request.POST['password']
         check = models.CustomerUsers.objects.filter(username=user, password=pwd).values()
         if check:
-            global currentuser, cart_bill_data
+            global currentuser, cart_bill_data, phone_verification
             temp = check[0]
             cart_bill_data = []
             currentuser = temp['user_id']
-            models.CustomerCart.objects.filter(customerusername=currentuser).delete()
-            # return redirect('customers:shop')
-            return render(request, "maps/current_location.html")
+            if temp['phone_verify']:
+                models.CustomerCart.objects.filter(customerusername=currentuser).delete()
+                # return redirect('customers:shop')
+                phone_verification = False
+                return render(request, "maps/current_location.html")
+            else:
+                return redirect('customers:mobileverify', "new")
         else:
             messages.error(request, f"Invalid UserName and Password...! Try Again ")
             return render(request, "pages/customer_Login.html")
@@ -181,7 +197,7 @@ def FirstHome(request):
     return render(request, "pages/firsthome.html")
 
 def LogOut(request):
-    global currentuser, mnumber, lat, long, shopid, cart_bill_data
+    global currentuser, mnumber, lat, long, shopid, cart_bill_data, phone_verification
     models.CustomerCart.objects.filter(customerusername=currentuser).delete()
     currentuser = ""
     mnumber =  ""
@@ -189,6 +205,7 @@ def LogOut(request):
     # long = ""
     shopid = ""
     cart_bill_data = []
+    phone_verification = False
     return redirect('customers:firstgome')
 
 
@@ -204,6 +221,8 @@ def FindCat():
     return temp
 
 def ShopSearch(request):
+    if not currentuser or  not lat or not long or not phone_verification:
+        return redirect('customers:login')
     if request.method == "POST":
         pattern = request.POST['search']
         d = shopsearch.SearchFind(pattern, lat, long)
@@ -227,19 +246,19 @@ def Findshops(id):
 
 
 def Shops(request):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not phone_verification:
+        return redirect('customers:login')
     d = Findshops("fristshop")
     c = FindCat()
     data =[c,d]
-    # return render(request, "pages/customer_shops.html", {'data':data})
-    # return render(request, "pages/shopnotfound.html")
-    return render(request, "pages/customer_forgot_password.html")
+    return render(request, "pages/customer_shops.html", {'data':data})
+    # # return render(request, "pages/shopnotfound.html")
+    # return render(request, "pages/customer_forgot_password.html")
 
 
 def SpecificShop(request, uuid_id):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or  not lat or not long or not phone_verification:
+        return redirect('customers:login')
     d = Findshops(uuid_id)
     c = FindCat()
     data = [c,d]
@@ -247,8 +266,8 @@ def SpecificShop(request, uuid_id):
 
 
 def Orders(request):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     order_ass = models.CustomerOrders.objects.filter(customerusername=currentuser).order_by('oder_date').values()
     orderinfo = order_ass[::-1]
     data = []
@@ -275,8 +294,8 @@ def Orders(request):
 
 
 def AddtoCart(request, uuid_id):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     un = models.CustomerUsers.objects.get(user_id=currentuser)
     # Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shopid).values()
     # uid_one = Auid[0]
@@ -294,8 +313,8 @@ def AddtoCart(request, uuid_id):
     return redirect('customers:products' , shopid) # redirect to products page
 
 def RemoveCart(request, uuid_id):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     pro = models.CustomerCart.objects.get(product_id=uuid_id)
     pro.delete()
     return redirect('customers:cart')
@@ -332,8 +351,8 @@ def CartData():
 
 
 def Cart(request):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser  or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     data = CartData()
     print("44444444444444444444444444444444444444444444444444444444444444444444444444")
     print(len(data))
@@ -342,8 +361,8 @@ def Cart(request):
 
 
 def CartBill(request, quantity):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     d = CartData()
     global cart_bill_data
     cart_bill_data = []
@@ -366,21 +385,19 @@ def CartBill(request, quantity):
         'cat_info' : d,
         'user_info' : userinfo_one
     }
-    print("44444444444444444444444444444444444444444444444444444444444444444444444444")
-    print(len(d))
-    print("44444444444444444444444444444444444444444444444444444444444444444444444444")
-    print(len(cart_bill_data))
     return render(request, 'pages/delivery_option.html', {'data':total_data})
 
 def PayNow (request):
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     l = len(cart_bill_data)
     pro_cost = cart_bill_data[l-1]
     pay_url = payments.get_payment_url(pro_cost , currentuser)
     return HttpResponseRedirect(pay_url)
 
 def PaymentVerifyRequest(request,p):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     payment_id = request.GET['payment_id']
     payment_request_id = request.GET['payment_request_id']
     payment_status = request.GET['payment_status']
@@ -394,8 +411,8 @@ def PaymentVerifyRequest(request,p):
     return HttpResponse(request.get_full_path)
 
 def CashOnDeliveryRequest(request):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     cartfunctions.UpdateCOD(currentuser,lat, long,cart_bill_data,shopid)
     cart_bill_data.clear()
     return redirect('customers:Orders')
@@ -461,8 +478,8 @@ def ProductsCatFilter():
     return temp
 
 def Products(request, uuid_id):
-    if currentuser or lat or long:
-        redirect('customers:login')
+    if not currentuser or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     # if currentuser and shopid and lat and long:
     #     redirect('customers:login')
     global shopid
@@ -480,6 +497,8 @@ def Products(request, uuid_id):
 
 
 def ProductSearch(request):
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     if request.method == "POST":
         pattern = request.POST['search']
         all_products = ProductsCat()
@@ -496,8 +515,8 @@ def ProductSearch(request):
 
 
 def SpecificCategory(request, uuid_id):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     d = ProductsFilter(uuid_id)
     c = ProductsCatFilter()
     data = [c,d]
@@ -507,8 +526,8 @@ def SpecificCategory(request, uuid_id):
 
 
 def Product(request, uuid_id):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     Auid = AgentShopCategorie.objects.filter(username_id=shopid).values()
     uid_one = Auid[0]
     Aun = uid_one['username_id']
@@ -546,8 +565,8 @@ def Product(request, uuid_id):
 
 
 def CurrentLoc(request,str_lat,str_long):
-    if currentuser:
-        redirect('customers:login')
+    if not currentuser or not phone_verification:
+        return redirect('customers:login')
     # global lat, long
     # lat = str_lat
     # long = str_long
@@ -555,12 +574,14 @@ def CurrentLoc(request,str_lat,str_long):
 
 
 def DeliveryOption(request):
-    if currentuser or shopid or lat or long:
-        redirect('customers:login')
+    if not currentuser or not shopid or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     return render(request, 'pages/delivery_option.html')
 
 
 def ShopNotFound(request):
+    if not currentuser or not lat or not long or not phone_verification:
+        return redirect('customers:login')
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
@@ -574,6 +595,8 @@ def ShopNotFound(request):
         return render(request, 'pages/shopnotfound.html')
     
 def CustomerProfile(request):
+    if not currentuser or not lat or not long:
+        return redirect('customers:login')
     cuser = models.CustomerUsers.objects.filter(user_id=currentuser).values()
     cuser_one = cuser[0]
     image_form = forms.CustomerImagesForm()
@@ -611,7 +634,9 @@ def CustomerProfile(request):
             c_update.save()
         if phone != cuser_one['phone_number']:
             if phone_verify(phone):
-                return HttpResponse("Phone number is valid")
+                models.CustomerUsers.objects.filter(user_id=currentuser).update(phone_verify=False, phone_number=phone)
+                
+                return redirect('customers:mobileverify', "new")
             else:
                 messages.error(request, f" Invalid Phone Number..! please include country code eg:+91")
                 return render(request, 'pages/customer_profile.html', {'data':data})
@@ -630,6 +655,8 @@ def CustomerProfile(request):
         return render(request, 'pages/customer_profile.html', {'data':data})
         
 def UpdateProfileImage(request):
+    if not currentuser  or not lat or not long:
+        return redirect('customers:login')
     if request.method == "POST":
         c_form = forms.CustomerImagesForm(request.FILES) 
         if request.FILES:
@@ -642,3 +669,37 @@ def UpdateProfileImage(request):
         messages.error(request, f"Profile not updated...!")
         return redirect('customers:customerprofile')     
         
+
+def ForgotPassword(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        cuser = models.CustomerUsers.objects.filter(username=username).values()
+        if cuser:
+            global currentuser
+            currentuser = username
+            return redirect('customers:mobileverify', username)
+        else:
+            messages.error(request, f"Username does not exists. Please try again.")
+            return render(request, 'pages/customer_forgot_password.html')
+    else:
+        return render(request, 'pages/customer_forgot_password.html')
+
+def UpdateForgotPassword(request):
+    if request.method == "POST":
+        pass1 = request.POST['password']
+        pass2 = request.POST['confirm_password']
+        if pass1 == pass2:
+            pcheck = password_check(pass1)
+            if pcheck != "correct":
+                messages.error(request, f"{pcheck}")
+                return render(request, 'pages/customer_password_update.html')
+            else:
+                c_update = models.CustomerUsers.objects.get(username=currentuser)
+                c_update.password = pass1
+                c_update.save()
+                return redirect('customers:login')
+        else:
+            messages.error(request, f"Password and Confirm Password does not match.")
+            return render(request, 'pages/customer_password_update.html')
+    else:
+        return render(request, 'pages/customer_password_update.html')

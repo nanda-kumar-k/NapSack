@@ -42,6 +42,8 @@
 .input-container input{
   width: 40px;
   height: 40px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .form-control:focus{

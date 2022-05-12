@@ -58,7 +58,7 @@
                               {% endfor %}
                             {% endif %}
                             <br>
-                            <a href="#">Forgot Password?</a>
+                            <a href="{% url 'customers:forgotpassword' %}">Forgot Password?</a>
 
                             <p style="margin-bottom: 0px;">or</p>
                             <button type="button" class="btn"><a href="{% url 'customers:register' %}">
