@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomerUsers
+from .models import CustomerImages, CustomerUsers
 
 class CLogin(forms.ModelForm):
     class Meta:
@@ -37,3 +37,7 @@ class CRegistration(forms.ModelForm):
         })
 
 
+class CustomerImagesForm(forms.ModelForm):
+    class Meta:
+        model = CustomerImages
+        fields = ['image']

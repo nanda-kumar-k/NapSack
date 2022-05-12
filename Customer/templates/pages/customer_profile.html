@@ -7,38 +7,82 @@
 {% block itemscontainers %}
 <div class="profile-container">
     <div class="profile-card">
-    <div class="profile-img-container">
-        <img src="{% static 'images/default_profile_img.png' %}" alt="profile" class="profile-img">
+        <div class="profile-img-container">
+            {% for form in data %}
+            {% if forloop.last %}
+            <img src="{{ form.img.image.url }}" alt="profile" class="profile-img">
+            {% endif %}
+            {% endfor %}
+            {% for form in data %}
+            {% if forloop.first %}
+            <form method="post" action="{% url 'customers:customerimage' %}" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <button type="submit">Update</button>
+            </form>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="profile-info-container">
+            <img src="{% static 'images/napsacklogo.png' %}">
+            <br>
+            <br>
+            <br>
+            {% for i in data %}
+            {% if forloop.last %}
+            <form method="post" action="{% url 'customers:customerprofile' %}">
+                {% csrf_token %}
+                <div class="each-input-container">
+                    <input type="text" name="username" placeholder="Username" value="{{ i.username }}">
+                    <button type="submit">Update</button>
+                </div>
+                <div class="each-input-container">
+                <input type="text" name="name" placeholder="Name" value="{{ i.name }}">
+                <button type="submit">Update</button>
+                </div>
+                <div class="each-input-container">
+                <input type="text" name="email" placeholder="Email" value="{{ i.email }}">
+                <button type="submit">Update</button>
+                </div>
+                <div class="each-input-container">
+                <input type="text" name="phone" placeholder="Phone" value="{{ i.phone_number }}">
+                <button type="submit">Update</button>
+                </div>
+                <div class="each-input-container">
+                <input type="text" name="password" placeholder="Password" value="{{ i.password }}">
+                <button type="submit">Update</button>
+                </div>
+            </form>
+            {% endif %}
+            {% endfor %}
+            {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div style="height: 40px;width: 320px;color: darkred; text-align: center;">
+                <strong>{{message}}</strong>
+                </div>
+                <br>
+                    <br>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div style="height: 40px;width: 320px;color: rgb(251, 130, 31); text-align: center;">
+            <strong>{{message}}</strong>
+            </div>
+            <br>
+                    <br>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+        </div>
+        
     </div>
-    <div class="profile-info-container">
-        <img src="{% static 'images/napsacklogo.png' %}">
-        <br>
-        <br>
-        <br>
-        <form>
-            <div class="each-input-container">
-                <input type="text" name="name" placeholder="Username" value="{{ data.name }}">
-                <button type="submit">Save</button>
-            </div>
-            <div class="each-input-container">
-            <input type="text" name="name" placeholder="Name" value="{{ data.name }}">
-            <button type="submit">Save</button>
-            </div>
-            <div class="each-input-container">
-            <input type="text" name="email" placeholder="Email" value="{{ data.email }}">
-            <button type="submit">Save</button>
-            </div>
-            <div class="each-input-container">
-            <input type="text" name="phone" placeholder="Phone" value="{{ data.phone }}">
-            <button type="submit">Save</button>
-            </div>
-            <div class="each-input-container">
-            <input type="text" name="password" placeholder="Password" value="{{ data.password }}">
-            <button type="submit">Save</button>
-            </div>
-        </form>
-    </div>
-</div>
+    
 </div>
 
 

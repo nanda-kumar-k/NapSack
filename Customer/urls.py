@@ -32,7 +32,9 @@ urlpatterns = [
     path('logout/', views.LogOut, name="logout"),
     path('shopsearch/', views.ShopSearch, name="shopsearch"),
     path('productsearch/', views.ProductSearch, name="productsearch"),
-    path('shopnotfiund/', views.ShopNotFound, name="shopnotfound")
+    path('shopnotfiund/', views.ShopNotFound, name="shopnotfound"),
+    path('customerprofile/', views.CustomerProfile, name="customerprofile"),
+    path('customerimage/', views.UpdateProfileImage, name="customerimage"),
 ]
 
 # if settings.DEBUG:

@@ -11,13 +11,13 @@
 				<img src="{% static 'images/pages/mobile.png' %}">
 				<h3 class="mb-2">OTP VERIFICATION</h3>
 				<div>
-					<p>code has been send to ******1258</p>
+					<p>code has been send to {{ data.phone_number }}</p>
 				</div>
 			</div>
 			
 			<div class="card-body">
 				<br>
-			<form method="post">
+			<form action="{}" method="post">
 			{% csrf_token %}
 					<div class="input-container">
 						<input type="text" class="m-1 text-center form-control rounded" maxlength="1" name="v1">

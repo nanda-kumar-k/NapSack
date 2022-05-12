@@ -1,4 +1,5 @@
 import email
+from statistics import mode
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse
 from . import shopsearch
@@ -56,6 +57,9 @@ def OtpVerify(request):
 votp = 0
 def MobileVerify(request):
     global votp
+    cuser = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+    cuser_one = cuser[0]
+    phone_number = cuser_one['phone_number']
     if request.method == 'POST':
         v1 = request.POST['v1']
         v2 = request.POST['v2']
@@ -66,16 +70,17 @@ def MobileVerify(request):
         if otp == str(votp):
             return redirect('customers:login')
         else:
-            return HttpResponse("<h1>wrong</h1>")
+            messages.error(request, f" Invalid OTP...! Try Again ")
+            return render(request, 'pages/MobileVerify.html', {'data':phone_number})
     else:
-        otp = random.randint(10000, 99999)
-        x = requests.request("GET",f'https://2factor.in/API/V1/df1606dc-a515-11ec-a4c2-0200cd936042/SMS/{mnumber}/{otp}/NapSack')
-        s = x.json()
+        # otp = random.randint(10000, 99999)
+        # x = requests.request("GET",f'https://2factor.in/API/V1/df1606dc-a515-11ec-a4c2-0200cd936042/SMS/{phone_number}/{otp}/NapSack')
+        # s = x.json()
         votp = otp
-        if s['Status'] == "Success":
-            return render(request, 'pages/MobileVerify.html')
-        else:
-            return HttpResponse("<h1>try again</h1>")
+        # if s['Status'] == "Success":
+        return render(request, 'pages/MobileVerify.html', {'data':phone_number})
+        # else:
+        #     return HttpResponse("<h1>try again</h1>")
 
 
 
@@ -90,8 +95,13 @@ def Registers(request):
                 print("checjjjjjjjjjjjj")
                 if form.is_valid():
                     form.save()
-                    global mnumber
-                    mnumber = pnum
+                    cusername = form.cleaned_data['username']
+                    c_user = models.CustomerUsers.objects.filter(username=cusername).values()
+                    c_user_one = c_user[0]
+                    customer_image_save = models.CustomerImages(user_id = c_user_one['user_id'])
+                    customer_image_save.save()
+                    global currentuser
+                    currentuser = c_user_one['user_id']
                     messages.success(request, f"New account created:")
                     # return redirect('customers:mobileverify')
                     return redirect('customers:login')
@@ -563,8 +573,72 @@ def ShopNotFound(request):
     else:
         return render(request, 'pages/shopnotfound.html')
     
-# def CustomerProfile(request):
-#     if request.method == "POST":
+def CustomerProfile(request):
+    cuser = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+    cuser_one = cuser[0]
+    image_form = forms.CustomerImagesForm()
+    cuser_one['img'] = models.CustomerImages.objects.get(user_id=currentuser)
+    data = []
+    data.append(image_form)
+    data.append(cuser_one)
+    if request.method == "POST":
+        username = request.POST['username']
+        name = request.POST['name']
+        email = request.POST['email']
+        password = request.POST['password']
+        phone = request.POST['phone']
+        if username != cuser_one['username']:
+            if models.CustomerUsers.objects.filter(username=username).exists():
+                messages.error(request, f"Username already exists. Please try another one.")
+                return render(request, 'pages/customer_profile.html', {'data':data})
+            else:
+                c_update = models.CustomerUsers.objects.filter(user_id=currentuser)
+                c_update.username = username
+                c_update.save()
+        if password != cuser_one['password']:
+            pcheck = password_check(password)
+            if pcheck != "correct":
+                messages.error(request, f"{pcheck}")
+                return render(request, 'pages/customer_profile.html', {'data':data})
+            else:
+                c_update = models.CustomerUsers.objects.get(user_id=currentuser)
+                c_update.password = password
+                c_update.save()
+        if name != cuser_one['name'] or email != cuser_one['email']:
+            c_update = models.CustomerUsers.objects.get(user_id=currentuser)
+            c_update.name = name
+            c_update.email = email
+            c_update.save()
+        if phone != cuser_one['phone_number']:
+            if phone_verify(phone):
+                return HttpResponse("Phone number is valid")
+            else:
+                messages.error(request, f" Invalid Phone Number..! please include country code eg:+91")
+                return render(request, 'pages/customer_profile.html', {'data':data})
+        else:
+            cuser = models.CustomerUsers.objects.filter(user_id=currentuser).values()
+            cuser_one = cuser[0]
+            image_form = forms.CustomerImagesForm()
+            cuser_one['img'] = models.CustomerImages.objects.get(user_id=currentuser)
+            data = []
+            data.append(image_form)
+            data.append(cuser_one)
+            messages.success(request, f"Profile Updated Successfully...!")
+            return render(request, 'pages/customer_profile.html', {'data':data})
         
+    else:
+        return render(request, 'pages/customer_profile.html', {'data':data})
         
+def UpdateProfileImage(request):
+    if request.method == "POST":
+        c_form = forms.CustomerImagesForm(request.FILES) 
+        if request.FILES:
+            s_save = models.CustomerImages.objects.get(user_id=currentuser)
+            s_save.image = request.FILES['image']
+            s_save.save()
+            messages.success(request, f"Profile Updated Successfully...!")
+        return redirect('customers:customerprofile')
+    else:
+        messages.error(request, f"Profile not updated...!")
+        return redirect('customers:customerprofile')     
         

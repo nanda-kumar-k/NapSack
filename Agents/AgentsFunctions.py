@@ -19,8 +19,11 @@ def password_check(passwd):
 
 def phone_verify(num):
     try:
-        my_number = phonenumbers.parse(num)
-        pv = phonenumbers.is_valid_number(my_number)
+        if num[0] == '+' and num[1] == '9' and num[2] == '1':
+            my_number = phonenumbers.parse(num)
+            pv = phonenumbers.is_valid_number(my_number)
+        else:
+            pv = False
     except Exception:
         pv= False
     return pv

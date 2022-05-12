@@ -2,7 +2,7 @@
     background-color: #e1e1e1 !important;
     display: flex;
     align-items: center;
-    margin-top: 25vh;
+    margin-top: 15vh;
     justify-content: center;
 }
 .profile-card {
@@ -16,11 +16,24 @@
     height: 20vw;
     margin: 50px 0 ;
     /* background-color: red; */
-    padding: 2.5%;
+    padding: .5%;
+    margin-left: 100px; 
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.001);
 }
 .profile-img-container img{
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.profile-img-container button{
+    border-radius: 20px !important;
+    border: 0px !important;
+    width: 50px;
+    margin-top: 10px;
+    height: 20px;
+    background-color: #e8b51d !important;
 }
 .profile-info-container {
     margin: 50px 0 ;
@@ -28,8 +41,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 40vw;
-    height: 25vw;   
+    width: 30vw;
+    height: 30vw;  
+    margin-right: 100px; 
     /* background-color: #3366FF; */
 }
 .each-input-container {
