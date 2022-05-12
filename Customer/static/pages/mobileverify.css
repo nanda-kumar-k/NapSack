@@ -1,34 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700');
-*{
-  border-radius: 0px !important;
-  font-family: "Poppins", sans-serif;
-}
 
-body{
+.mobile-container{
   background-color: #e1e1e1 !important;
   display: flex;
   align-items: center;
-  height: 100vh;
+  margin-top: 12vh;
+  justify-content: center;
 }
 
-.card{
+.mobile-container .card-container{
   border: none !important;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  width:20vw;
+  height:40vw;
+  text-align: center;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
 }
 
 .card-header{
   color: white !important;
   background: #3366FF !important;
   text-align: center;
+  width: 18vw;
+  height: 40vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;  */
 }
 
-.card-header > img{
-  width: 180px;
+.card-header  img{
+  width: 200px;
 }
-
+.mobile-container .card-container .card-body{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; 
+  width: 18vw;
+}
 .input-container input{
   width: 40px;
   height: 40px;
@@ -39,9 +49,13 @@ body{
   border: 1px solid #3366FF !important;
 }
 
-.verify-btn{
+.Verify button{
   border-radius: 20px !important;
   border: 0px !important;
   width: 140px;
   background-color: #3366FF !important;
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  color: white !important;
 }

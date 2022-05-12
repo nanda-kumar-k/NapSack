@@ -1,0 +1,67 @@
+{% extends 'layout/customer_login.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'pages/customer_profile.css' %}">
+<link rel="stylesheet" href="sweetalert2.min.css">
+{% endblock css %}
+{% block itemscontainers %}
+<div class="profile-container">
+    <div class="profile-card">
+    <div class="profile-img-container">
+        <img src="{% static 'images/default_profile_img.png' %}" alt="profile" class="profile-img">
+    </div>
+    <div class="profile-info-container">
+        <img src="{% static 'images/napsacklogo.png' %}">
+        <br>
+        <br>
+        <br>
+        <form>
+            <div class="each-input-container">
+                <input type="text" name="name" placeholder="Username" value="{{ data.name }}">
+                <button type="submit">Save</button>
+            </div>
+            <div class="each-input-container">
+            <input type="text" name="name" placeholder="Name" value="{{ data.name }}">
+            <button type="submit">Save</button>
+            </div>
+            <div class="each-input-container">
+            <input type="text" name="email" placeholder="Email" value="{{ data.email }}">
+            <button type="submit">Save</button>
+            </div>
+            <div class="each-input-container">
+            <input type="text" name="phone" placeholder="Phone" value="{{ data.phone }}">
+            <button type="submit">Save</button>
+            </div>
+            <div class="each-input-container">
+            <input type="text" name="password" placeholder="Password" value="{{ data.password }}">
+            <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<script src="sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+        function removeconformation(){
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this Product!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Remove from cart!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                var url = $("#Url").attr("data-url");
+                document.location.href = url
+            }
+            })
+        };
+</script>
+
+{% endblock itemscontainers %}
