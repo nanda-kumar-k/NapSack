@@ -562,5 +562,9 @@ def ShopNotFound(request):
         return render(request, 'pages/shopnotfound.html')
     else:
         return render(request, 'pages/shopnotfound.html')
+    
+# def CustomerProfile(request):
+#     if request.method == "POST":
+        
         
         

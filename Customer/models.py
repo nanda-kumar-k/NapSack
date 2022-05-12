@@ -29,6 +29,7 @@ class CustomerUsers(models.Model):
     phone_number = PhoneNumberField( null=False, blank=False)
     created_on = models.DateTimeField(default=now)
     phone_verify = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='customer_images', default='customer_images/default_profile_img.png')
 
     def __str__(self):
         return self.username
