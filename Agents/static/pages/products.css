@@ -134,7 +134,7 @@
     /* background:linear-gradient(rgb(168, 247, 247),white); */
 }
 .product-search-conatiner{
-    width: 575px;
+    width: 675px;
     height: 40px;
     /* background: #3498db; */
     border-radius: 20px;
@@ -145,7 +145,7 @@
     margin-left: 20px;
 }
 .product-search-conatiner input {
-    width: 500px;
+    width: 600px;
     height: 30px;
     margin-left: 10px;
     margin-right: 5px;

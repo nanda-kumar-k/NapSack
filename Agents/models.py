@@ -32,6 +32,8 @@ class AgentLocation(models.Model):
     username = models.OneToOneField(AgentsUsers, on_delete=models.CASCADE, primary_key=True, )
     longitude = models.CharField(max_length=100)
     latitude = models.CharField(max_length=100)
+    def __str__(self):
+        return f'{self.username.username} Profile'
     
 
 class AgentShopCategorie(models.Model):
@@ -93,6 +95,7 @@ class AgentOrdersProducts(models.Model):
     Categorie = models.CharField(max_length=200)
     cost = models.PositiveIntegerField()
     quantity = models.PositiveSmallIntegerField()
+    image = models.ImageField(upload_to='images', default="customer_products.jpg")
 
 
     # def __str__(self):

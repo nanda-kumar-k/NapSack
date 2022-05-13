@@ -9,8 +9,10 @@
     </div>
     <div class="addproducts-container">
         <div class="addproducts-left">
-            <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
-                <h2 style="text-align: center">Catgory name</h2>
+            <br>
+            <div style="width: 100%;">
+                <h2 style="text-align: center">Categories</h2>
+                <hr>
             </div>
             <br>
             <ul>
@@ -24,19 +26,20 @@
             </ul>
         </div>
         <div class="addproducts-right">
-            <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+            <!-- <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
                 <h2 style="text-align: left">Catgory name</h2>
-            </div>
+            </div> -->
             <br>
             {% for v,k in data.items %}
                 {% if forloop.last %}
+                    {% if k %}
                     {% for j in k %}
                         <div class="addproducts-products">
                             <div class="addproducts-img">
-                                <img src="{% static 'images/item.jpg' %}">
+                                <img src="{{ j.img.image.url }}">
                             </div>
                             <div class="addproducts-info">
-                                <h3>{{ j.name }}</h3>
+                                <h4>{{ j.name }}</h4>
                                 <form action="{% url 'agents:Agentsaddproducts' j.product_id %}" method="post">
                                     {% csrf_token %}
                                     <table>
@@ -56,9 +59,13 @@
 
                                     <input type="submit" value="Add"  style="float: right" >
                                 </form>
+                                <br> 
                             </div>
                         </div>
                     {% endfor %}
+                    {% else %}
+                        <h2 style="text-align: center;margin-top: 20%;color: rgb(245, 174, 40);">No products to add in this category</h2>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 

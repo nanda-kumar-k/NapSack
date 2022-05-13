@@ -110,7 +110,7 @@ def UpdatePayments(payment_id,payment_request_id,payment_status,user_id,lat, lon
         corderproduct.save()
         aorderproduct = AgentOrdersProducts(
             agentorders=aorder_get, name=pro['product_name'],
-            Categorie=pro['Categories_name'], cost=pro['cost'], quantity=pro['qty_selected']
+            Categorie=pro['Categories_name'], cost=pro['cost'], quantity=pro['qty_selected'],image=img_url
         )
         aorderproduct.save()
         a_get_qty = AgentProducts.objects.filter(agentsusers_id=shop_id,product_id=pro_id).values()

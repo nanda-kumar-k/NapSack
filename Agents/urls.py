@@ -16,9 +16,11 @@ urlpatterns = [
     path('agentsproducts/', views.Products, name="Agentsproducts"),
     path('agentsproducts/<uuid:uuid_id>/', views.Productsupdate, name="Agentsproductupdate"),
     path('agentsproductsremove/<uuid:uuid_id>/', views.ProductRemove, name="Agentsproductremove"),
-    path('<str:str_lat>/<str:str_long>/', views.ShopLoction, name="shoploc"),
-    path('<uuid:uuid_id>/', views.AddCategory, name="addcategory"),
+    path('shoplocation/<str:str_lat>/<str:str_long>/', views.ShopLoction, name="shoploc"),
+    path('addcategory/<uuid:uuid_id>/', views.AddCategory, name="addcategory"),
+    path('agentsorderupdate/<uuid:uuid_id>/', views.AgentsOrderUpdate, name="agentsorderupdate"),
     path('selectcategory/', views.SelectCategory, name="selectcategory"),
+    
 
 
 

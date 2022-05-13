@@ -5,8 +5,12 @@
 {% endblock css %}
 {% block itemscontainers %}
     <br>
-    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
-        <h2 style="margin-left: 100px">#order id : ddsf-sd54s-664ds</h2>
+    <div style="width: 100%;">
+        {% for k, i in data.items %}
+            {% if forloop.last %}
+        <h2 style="margin-left: 100px">#order id : {{ i.order_id }}</h2>
+        {% endif %}
+            {% endfor %}
     </div>
     <div class="orderdetails-container">
         <div class="orderdetails-addressinfo">
@@ -42,10 +46,10 @@
                                     <br>
                                     <p>* Before send Pack All Products in Bag </p>
                                     <br>
-                                    <button> Send Order </button>
+                                    <a href="{% url 'agents:agentsorderupdate' i.order_id %}"><button> Send Order </button></a>
                             </div>
                             <div class="orderdetails-qrimg">
-                                <img src="{% static 'images/qr.png' %}">
+                                <img src="{{ i.qr_url }}">
                             </div>
                         </div>
 
@@ -63,14 +67,13 @@
                 </div>
                 <div class="orderdetails-items">
                     <div class="orderdetails-img">
-                        <img src="{% static 'images/item.jpg' %}">
+                        <img src="{{ j.img.image.url }}">
                     </div>
                     <div class="orderdetails-info">
-                        <h3>{{ j.name }}</h3>
-
-                        <h3>cat: mobile</h3>
-                        <h3>quantity: {{ j.quantity }}</h3>
-                        <h3>product cost: {{ j.cost }}</h3>
+                        <b><p>{{ j.name }}</p></b>
+                        <b><p>Categorie: {{ j.Categorie }}</p></b>
+                        <b><p>quantity: {{ j.quantity }}</p></b>
+                        <b><p>product cost: {{ j.cost }}</p></b>
                     </div>
                 </div>
             </div>

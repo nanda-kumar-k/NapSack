@@ -14,7 +14,7 @@
     /*background: orange;*/
     overflow-y: auto;
     padding: 0 2%;
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -73,22 +73,22 @@
 
 .addproducts-products{
     width: 96%;
-    height: 40%;
+    /* height: 40%; */
     padding: 1% 2%;
     /*background: orange;*/
     display: flex;
     margin-bottom: 30px;
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .addproducts-img {
     width: 25%;
-    height: 92%;
+    /* height: 92%; */
     display: block;
     padding: 1%;
     /*background-color: #131469;*/
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .addproducts-img img{
    width: 100%;
@@ -96,11 +96,11 @@
 }
 .addproducts-info {
     width: 71%;
-    height: 100%;
+    /* height: 100%; */
     padding: 0 2%;
 }
 .addproducts-info td{
-    padding: 2%;
+    padding: 1%;
     font-size: 20px;
 }
 .addproducts-info input{

@@ -10,15 +10,15 @@
     flex: 1;
     /*background: chartreuse;*/
     padding: 3%;
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .orderdetails-addressinfo .dealer-img-container {
     width: 100px;
     height: 100px;
     padding: 1%;
-    babackground:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     cursor: pointer;
 }
 .orderdetails-addressinfo .dealer-img-container img{
@@ -33,7 +33,7 @@
     width: 200px;
     padding: 2%;
     font-size: 18px;
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .orderdetails-addressinfo p{
@@ -46,7 +46,7 @@
     /*background: aqua;*/
     overflow-y: auto;
     padding: 3%;
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 20px;
 }
@@ -92,16 +92,15 @@ td{
     align-items: center;
     float: right;
     margin-right: 100px;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .orderdetails-inner
 {
     width: 31vw;
-    height: 20vh;
     /*background: blueviolet;*/
-    background:linear-gradient(rgb(168, 247, 247),white);
+    /* background:linear-gradient(rgb(168, 247, 247),white); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 1%;
     display: flex;
@@ -111,20 +110,19 @@ td{
 }
 .orderdetails-items{
     width: 100%;
-    height: 18vh;
     /*background-color: red;*/
     background: white;
     display: flex;
     margin-top: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .orderdetails-items .orderdetails-img{
     width: 18%;
-    height: 85%;
     display: block;
     padding: 2%;
-    background-color: #131469;
-    background:linear-gradient(rgb(168, 247, 247),white);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-color: #131469; */
+    /* background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .orderdetails-items .orderdetails-img img{
     height: 100%;

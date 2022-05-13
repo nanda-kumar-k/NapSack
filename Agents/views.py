@@ -1,3 +1,4 @@
+from turtle import mode
 from django.shortcuts import render, HttpResponse, redirect
 from Customer import shopsearch
 
@@ -59,7 +60,8 @@ def ShopLoction(request,str_lat,str_long):
     global agent_long, agent_lat
     agent_long = str_long
     agent_lat = str_lat
-    return redirect('agents:selectcategory')
+    return HttpResponse("Shop Location Added")
+    # return redirect('agents:selectcategory')
     # data = ShopsCategories.objects.all().values()
     # print(type(data))
     # print(data)
@@ -147,6 +149,14 @@ def OrderDetails(request, uuid_id):
     Do_one = Do[0]
     du = DealerUsers.objects.filter(dealer_user_id=Do_one['username_id']).values()
     du_one =  du[0]
+    temp = []
+    for i in pro_data:
+        img_url = models.AgentOrdersProducts.objects.get(product_id=i['product_id'])
+        t = i
+        t['img'] = img_url
+        temp.append(t)
+    qr_data = "orderid:%40"+str(uuid_id)+"%0Aname:%40"+cu_one['name']+"%0Aphone%20number:%40"+cu_one['phone_number']+"%0Ano%20of%20products:%40"+str(len(pro_data))+"%0Acost:%40"+str(co_one['bill'])
+    qr_url = f'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={qr_data}&choe=UTF-8'
     user_data = {
         'order_id' :uuid_id,
         'cname': cu_one['name'],
@@ -156,16 +166,17 @@ def OrderDetails(request, uuid_id):
         'dphone': du_one['phone_number'],
         'cost': co_one['bill'],
         'no_of_items': len(pro_data),
+        'qr_url': qr_url,
     }
     data = {
-        'pro_data': pro_data,
+        'pro_data': temp,
         'user_data': user_data
     }
     return render(request, "pages/orderdetails.html", {'data': data})
 
 
 def ProductsCheck(uuid_id):
-    all_products = models.Products.objects.filter(categories_id=uuid_id).values()
+    all_products = NapProducts.objects.filter(categories_id=uuid_id).values()
     products = models.AgentProducts.objects.filter(agentsusers=currentuser).values()
     # print(all_products)
     # print(products)
@@ -176,7 +187,10 @@ def ProductsCheck(uuid_id):
         if products:
             continue
         else:
-            productdata.append(apr)
+            img_url = NapProducts.objects.get(product_id=apr['product_id'])
+            temp = apr
+            temp['img'] = img_url
+            productdata.append(temp)
 
     agent_categories = models.AgentShopCategorie.objects.filter(username=currentuser).values()
     tac = agent_categories[0]
@@ -216,7 +230,6 @@ def AddProductsInfo(request):
 
 
 def AddProducts(request, uuid_id):
-
     if request.method == "POST":
         Icost = request.POST['cost']
         Ioffer = request.POST['offer']
@@ -302,7 +315,11 @@ def ProductRemove(request, uuid_id):
     pr.delete()
     return redirect('agents:Agentsproducts')
 
-
+def AgentsOrderUpdate(request, uuid_id):
+    models.AgentOrders.objects.filter(agent_order_id=uuid_id,agentsusers=currentuser ).update(delivery_status=True)
+    CustomerOrders.objects.filter(order_id=uuid_id).update(status=True)
+    return redirect('agents:AgentsOrders')
+    
 
 
 

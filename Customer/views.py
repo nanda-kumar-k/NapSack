@@ -253,8 +253,8 @@ def Shops(request):
     d = Findshops("fristshop")
     c = FindCat()
     data =[c,d]
-    # return render(request, "pages/customer_shops.html", {'data':data})
-    return render(request, "pages/shopnotfound.html")
+    return render(request, "pages/customer_shops.html", {'data':data})
+    # return render(request, "pages/shopnotfound.html")
     # return render(request, "pages/customer_forgot_password.html")
 
 

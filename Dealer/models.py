@@ -28,6 +28,8 @@ class DealertLocation(models.Model):
     latitude = models.CharField(max_length=100, default=None)
     date = models.DateTimeField(default=now)
     dealer_status = models.BooleanField(default=False)
+    def __str__(self):
+        return f'{self.username.username} Profile'
 
 
 class DealerOrders(models.Model):

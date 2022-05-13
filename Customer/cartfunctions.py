@@ -64,7 +64,8 @@ def FindDeliveryDateAndTime(a_distance, c_distance):
     elif total_time + m >= 300 and total_time + m < 360:
         h = h + 5
         m = m + total_time - 300
-        
+    if h > 23:
+        h = h - 24
     d = datetime.datetime(current_time.year, current_time.month, current_time.day, h, int(m), s, current_time.microsecond)
     
     return d
@@ -156,7 +157,7 @@ def UpdateCOD(user_id,lat, long,data,shop_id):
         corderproduct.save()
         aorderproduct = AgentOrdersProducts(
             agentorders=aorder_get, name=pro['product_name'],
-            Categorie=pro['Categories_name'], cost=pro['cost'], quantity=pro['qty_selected']
+            Categorie=pro['Categories_name'], cost=pro['cost'], quantity=pro['qty_selected'], image=img_url
         )
         aorderproduct.save()
         a_get_qty = AgentProducts.objects.filter(agentsusers_id=shop_id,product_id=pro_id).values()
