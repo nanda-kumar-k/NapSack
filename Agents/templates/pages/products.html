@@ -1,18 +1,28 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% block css %}
+{% load bootstrap_icons %}
 <link rel="stylesheet" type="text/css" href="{% static 'pages/products.css' %}">
 {% endblock css %}
 {% block itemscontainers %}
-    <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
+    <!-- <div style="width: 100%;background:linear-gradient(rgb(168, 247, 247),white)">
         <h1 style="text-align: center">Products</h1>
+    </div> -->
+    <br>
+    <div class="product-search-conatiner">
+        <form action="{% url 'agents:Agentsproducts' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search" >
+            <button type="submit" style="border: none;">{% bs_icon 'search' size='1.5em' %}</button>
+        </form>
     </div>
+    <br>
+    <hr>
     <div class="products-container" id="products">
-
         {% for info in productsdata %}
                     <div class="products-inner">
                         <div class="products-img">
-                            <img src="{% static 'media/{{ info.image_id }}' %}">
+                            <img src="{{ info.img.image.url }}">
                             <p>{{ info.image_id }}</p>
                         </div>
                         <div class="products-info">

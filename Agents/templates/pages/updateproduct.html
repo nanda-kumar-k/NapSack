@@ -11,10 +11,10 @@
         {% for info in productsdata %}
             <div class="updateproduct-inner">
                 <div class="updateproduct-img">
-                    <img src="{% static 'images/item.jpg' %}">
+                    <img src="{{ info.img.image.url }}">
                 </div>
                 <div class="updateproduct-info">
-                    <h1>{{ info.name }}</h1>
+                    <h2>{{ info.name }}</h2>
                     <br>
                     <form method="post">
                         {% csrf_token %}
@@ -33,9 +33,9 @@
                             </tr>
                         </table>
                         <br>
-                        <input type="submit" value="save" style="float: right">
+                        <button type="submit" value="save"> Save</button>
                     </form>
-                    <button style="float: right" >Cancel</button>
+                    <a href="{% url 'agents:Agentsproducts' %}"><button style="margin-right: 200px;"  >Cancel</button></a>
                 </div>
             </div>
 

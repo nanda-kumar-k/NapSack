@@ -1,5 +1,5 @@
 from instamojo_wrapper import Instamojo
-from Agents.models import AgentLocation, AgentOrders, AgentOrdersProducts, AgentsUsers
+from Agents.models import AgentLocation, AgentOrders, AgentOrdersProducts, AgentProducts, AgentsUsers
 from Customer import locationfunctions
 from NapsackAdmin.models import Products as NapProducts
 from Customer.cartfunctions import FindDeliveryDateAndTime, finddealer
@@ -113,4 +113,7 @@ def UpdatePayments(payment_id,payment_request_id,payment_status,user_id,lat, lon
             Categorie=pro['Categories_name'], cost=pro['cost'], quantity=pro['qty_selected']
         )
         aorderproduct.save()
+        a_get_qty = AgentProducts.objects.filter(agentsusers_id=shop_id,product_id=pro_id).values()
+        a_get_qty_one = a_get_qty[0]
+        AgentProducts.objects.filter(product_id=pro_id, agentsusers_id=shop_id).update(quantity_present=a_get_qty_one['quantity_present']-int(pro['qty_selected']))
     models.CustomerCart.objects.filter(customerusername=un).delete()

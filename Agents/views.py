@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from Customer import shopsearch
 
 from Customer.cartfunctions import finddealer
 from . import forms
@@ -245,9 +246,10 @@ def UpdateProductCheck():
     for pro in products_agent:
         temp = pro
         products_admin = models.Products.objects.filter(product_id=pro['product_id_id']).values()
+        nap_product = NapProducts.objects.get(product_id=pro['product_id_id'])
         tp1 = products_admin[0]
         temp['name'] = tp1['name']
-        temp['image_id'] = tp1['image']
+        temp['img'] = nap_product
         categories_admin = models.ProductsCategories.objects.filter(categories_id=tp1['categories_id_id']).values()
         tc1 = categories_admin[0]
         temp['categories_id'] = tc1['name']
@@ -256,9 +258,23 @@ def UpdateProductCheck():
 
 
 def Products(request):
+    if request.method == "POST":
+        pattern = request.POST['search']
+        all_products = UpdateProductCheck()
+        q = 3
+        data = []
+        for oneshop in all_products:
+            if shopsearch.search(pattern, oneshop['name'].lower(), q) :
+                data.append(oneshop)
+        if data:
+            return render(request, "pages/products.html", {'productsdata': data})
+        else:
+            messages.error(request, 'No Products Found')
+            return render(request, "pages/products.html", {'productsdata': data})
     data = UpdateProductCheck()
     return render(request, "pages/products.html", {'productsdata': data})
 
+    
 
 def Productsupdate(request, uuid_id):
     if request.method == "POST":

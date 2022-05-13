@@ -31,6 +31,7 @@
 }
 
 .updateproduct-info {
+    position: relative;
     width: 50vw;
     height: 40vh;
     padding: 1%;
@@ -49,6 +50,9 @@
     font-size: 15px;
 }
 .updateproduct-info button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
     width: 70px;
     height: 30px;
     font-size: 15px;

@@ -221,7 +221,7 @@ def FindCat():
     return temp
 
 def ShopSearch(request):
-    if not currentuser or  not lat or not long or not phone_verification:
+    if not currentuser or  not lat or not long or  phone_verification:
         return redirect('customers:login')
     if request.method == "POST":
         pattern = request.POST['search']
@@ -246,18 +246,20 @@ def Findshops(id):
 
 
 def Shops(request):
-    if not currentuser or not phone_verification:
+    print(currentuser)
+    print(phone_verification)
+    if not currentuser or  phone_verification:
         return redirect('customers:login')
     d = Findshops("fristshop")
     c = FindCat()
     data =[c,d]
-    return render(request, "pages/customer_shops.html", {'data':data})
-    # # return render(request, "pages/shopnotfound.html")
+    # return render(request, "pages/customer_shops.html", {'data':data})
+    return render(request, "pages/shopnotfound.html")
     # return render(request, "pages/customer_forgot_password.html")
 
 
 def SpecificShop(request, uuid_id):
-    if not currentuser or  not lat or not long or not phone_verification:
+    if not currentuser or  not lat or not long or phone_verification:
         return redirect('customers:login')
     d = Findshops(uuid_id)
     c = FindCat()
@@ -266,7 +268,7 @@ def SpecificShop(request, uuid_id):
 
 
 def Orders(request):
-    if not currentuser or not lat or not long or not phone_verification:
+    if not currentuser or not lat or not long or phone_verification:
         return redirect('customers:login')
     order_ass = models.CustomerOrders.objects.filter(customerusername=currentuser).order_by('oder_date').values()
     orderinfo = order_ass[::-1]
@@ -294,7 +296,7 @@ def Orders(request):
 
 
 def AddtoCart(request, uuid_id):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or phone_verification:
         return redirect('customers:login')
     un = models.CustomerUsers.objects.get(user_id=currentuser)
     # Auid = AgentShopCategorie.objects.filter(agent_shop_categorie_id=shopid).values()
@@ -313,7 +315,7 @@ def AddtoCart(request, uuid_id):
     return redirect('customers:products' , shopid) # redirect to products page
 
 def RemoveCart(request, uuid_id):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or phone_verification:
         return redirect('customers:login')
     pro = models.CustomerCart.objects.get(product_id=uuid_id)
     pro.delete()
@@ -351,7 +353,7 @@ def CartData():
 
 
 def Cart(request):
-    if not currentuser  or not lat or not long or not phone_verification:
+    if not currentuser  or not lat or not long or phone_verification:
         return redirect('customers:login')
     data = CartData()
     print("44444444444444444444444444444444444444444444444444444444444444444444444444")
@@ -361,7 +363,7 @@ def Cart(request):
 
 
 def CartBill(request, quantity):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or phone_verification:
         return redirect('customers:login')
     d = CartData()
     global cart_bill_data
@@ -384,11 +386,11 @@ def CartBill(request, quantity):
     total_data = {
         'cat_info' : d,
         'user_info' : userinfo_one
-    }
+    } 
     return render(request, 'pages/delivery_option.html', {'data':total_data})
 
 def PayNow (request):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or phone_verification:
         return redirect('customers:login')
     l = len(cart_bill_data)
     pro_cost = cart_bill_data[l-1]
@@ -396,7 +398,7 @@ def PayNow (request):
     return HttpResponseRedirect(pay_url)
 
 def PaymentVerifyRequest(request,p):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or  phone_verification:
         return redirect('customers:login')
     payment_id = request.GET['payment_id']
     payment_request_id = request.GET['payment_request_id']
@@ -411,7 +413,7 @@ def PaymentVerifyRequest(request,p):
     return HttpResponse(request.get_full_path)
 
 def CashOnDeliveryRequest(request):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or phone_verification:
         return redirect('customers:login')
     cartfunctions.UpdateCOD(currentuser,lat, long,cart_bill_data,shopid)
     cart_bill_data.clear()
@@ -478,7 +480,7 @@ def ProductsCatFilter():
     return temp
 
 def Products(request, uuid_id):
-    if not currentuser or not lat or not long or not phone_verification:
+    if not currentuser or not lat or not long or phone_verification:
         return redirect('customers:login')
     # if currentuser and shopid and lat and long:
     #     redirect('customers:login')
@@ -497,7 +499,7 @@ def Products(request, uuid_id):
 
 
 def ProductSearch(request):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or  phone_verification:
         return redirect('customers:login')
     if request.method == "POST":
         pattern = request.POST['search']
@@ -515,7 +517,7 @@ def ProductSearch(request):
 
 
 def SpecificCategory(request, uuid_id):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or  phone_verification:
         return redirect('customers:login')
     d = ProductsFilter(uuid_id)
     c = ProductsCatFilter()
@@ -526,7 +528,7 @@ def SpecificCategory(request, uuid_id):
 
 
 def Product(request, uuid_id):
-    if not currentuser or not shopid or not lat or not long or not phone_verification:
+    if not currentuser or not shopid or not lat or not long or  phone_verification:
         return redirect('customers:login')
     Auid = AgentShopCategorie.objects.filter(username_id=shopid).values()
     uid_one = Auid[0]
@@ -565,7 +567,8 @@ def Product(request, uuid_id):
 
 
 def CurrentLoc(request,str_lat,str_long):
-    if not currentuser or not phone_verification:
+    print("shopsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+    if not currentuser:
         return redirect('customers:login')
     # global lat, long
     # lat = str_lat
