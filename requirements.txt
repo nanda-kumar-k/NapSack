@@ -67,7 +67,7 @@ Pygments==2.12.0
 pyparsing==3.0.8
 pytest==7.1.2
 python-dateutil==2.8.2
-pywin32==304
+pypiwin32==223
 PyYAML==6.0
 pyzmq==22.3.0
 ratelim==0.1.6
