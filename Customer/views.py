@@ -160,9 +160,10 @@ def Logins(request):
 
 
 def Home(request, home_lat, home_long):
-    # global lat, long
+    global lat, long
     # lat = home_lat
     # long = home_long
+    print(lat, long)
     d = locationfunctions.shoploc(lat, long)
     pro_data = []
     imgs = []

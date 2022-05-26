@@ -160,7 +160,6 @@ def shopinfo(locinfo):
 
 
 def shoploc(lat, long):
-    print(lat)
     agents_loc = AgentLocation.objects.all().values()
     # print(agents_loc)
     temp_agents_loc = agents_loc

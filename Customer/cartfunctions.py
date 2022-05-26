@@ -14,7 +14,7 @@ def finddealer(lat, long):
     find_dlr = [0, 1]
     for dlr_one in dlr_loc:
         dis = locationfunctions.find_distance(lat,long,dlr_one['latitude'],dlr_one['longitude'])
-        if dis >= find_dis:
+        if dis <= find_dis and dis >=0:
             dlr_orders = DealerOrders.objects.filter(dealer_status=False).values()
             if len(dlr_orders) <=5:
                 find_dis = dis

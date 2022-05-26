@@ -15,40 +15,14 @@
 
 <body>
 <nav>
-    <div class="sidebar-top">
+    <div class="sidebar-top" style="margin-bottom: 50px;">
       <span class="shrink-btn">
         <i class='bx bx-chevron-left'></i>
       </span>
-        <!--      <img src="{% static 'images/napsacklogo.png' %}" class="image" alt="">-->
-        <h3 class="hide">Shop Name</h3>
+      <img src="{% static 'images/logo.png' %}" class="image" alt="" style="width: 200px; height:100px;">
     </div>
-
-    <div class="search">
-        <i class='bx bx-search'></i>
-        <input type="text" class="hide" placeholder="Quick Search ...">
-    </div>
-
     <div class="sidebar-links">
         <ul>
-            <div class="active-tab"></div>
-            <li class="tooltip-element" data-tooltip="0">
-                <a href="{% url 'dealers:home' %}" class="active" data-active="0">
-                    <div class="icon">
-                        <i class='bx bx-tachometer'></i>
-                        <i class='bx bxs-tachometer'></i>
-                    </div>
-                    <span class="link hide" >Dashboard</span>
-                </a>
-            </li>
-<!--            <li class="tooltip-element" data-tooltip="1">-->
-<!--                <a href="{% url 'agents:Agentsproducts' %}" data-active="1">-->
-<!--                    <div class="icon">-->
-<!--                        <i class='bx bx-basket'></i>-->
-<!--                        <i class='bx bxs-basket'></i>-->
-<!--                    </div>-->
-<!--                    <span class="link hide" >Products</span>-->
-<!--                </a>-->
-<!--            </li>-->
             <li class="tooltip-element" data-tooltip="2">
                 <a href="{% url 'dealers:shopsverification' %}" data-active="2">
                     <div class="icon">
@@ -67,13 +41,8 @@
                     <span class="link hide">Location Update</span>
                 </a>
             </li>
-            <div class="tooltip">
-                <a href="{% url 'dealers:home' %}"><span class="show">Dashboard</span></a>
-                <span>Shop Verifications</span>
-                <span>Location Update</span>
-            </div>
         </ul>
-
+        <br>
         <h4 class="hide">Orders Info</h4>
 
         <ul>
@@ -86,15 +55,6 @@
                     <span class="link hide">orders</span>
                 </a>
             </li>
-<!--            <li class="tooltip-element" data-tooltip="1">-->
-<!--                <a href="{% url 'agents:AgentsOrders' %}" data-active="5">-->
-<!--                    <div class="icon">-->
-<!--                        <i class='bx bx-help-circle'></i>-->
-<!--                        <i class='bx bxs-help-circle'></i>-->
-<!--                    </div>-->
-<!--                    <span class="link hide">Pending</span>-->
-<!--                </a>-->
-<!--            </li>-->
             <li class="tooltip-element" data-tooltip="2">
                 <a href="#" data-active="6">
                     <div class="icon">
@@ -104,10 +64,6 @@
                     <span class="link hide">Profile</span>
                 </a>
             </li>
-            <div class="tooltip">
-                <span class="show">Orders</span>
-                <span>Profile</span>
-            </div>
         </ul>
     </div>
 
@@ -119,7 +75,7 @@
             <div class="admin-profile hide">
                 <img src="./img/face-1.png" alt="">
                 <div class="admin-info">
-                    <h3>John Doe</h3>
+                    <h3>Dealer</h3>
                     <h5>Admin</h5>
                 </div>
             </div>
@@ -127,18 +83,16 @@
                 <i class='bx bx-log-out'></i>
             </a>
         </div>
-        <div class="tooltip">
-            <span class="show">John Doe</span>
-            <span>Logout</span>
-        </div>
     </div>
 </nav>
 
 
 <main>
-    <div style="width: 100%;height: 8vh; background: #3df1be">
-
-    </div>
+    <div style="width: 100%;height: 8vh; background: #3498db; text-align: center;">
+        <h1 style="color: white;">Napsack</h1>
+        <h3 style="color: white;">You Create We Promote</h3>
+  
+      </div>
     {% block itemscontainers %}
 
     {% endblock itemscontainers %}
