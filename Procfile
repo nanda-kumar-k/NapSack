@@ -1,0 +1,1 @@
+web: gunicorn Napsack.wsgi --log-file -
