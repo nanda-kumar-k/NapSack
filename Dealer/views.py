@@ -209,9 +209,6 @@ def DealerCurrentLocation(request,str_lat,str_long):
     return render(request, 'dealer_maps/dealer_current_location.html')
 
 
-
-
-
 # insert the data
 
     # m = models.Members(firstname="adil", lastname="k")

@@ -19,9 +19,9 @@
                             <div class="verification-container">
                                 <a href="{% url 'dealers:directions' i.along i.alat %}"><button style="padding:5%" >View Location</button></a>
                                 {% if i.verify_status %}
-                              <button style="margin-left: 20px">Verify</button>
+                              <button style="margin-left: 20px;width: 60px;">Verify</button>
                                 {% else %}
-                                <a href="{% url 'dealers:shopverify' i.agent_user_id %}"><button style="margin-left: 20px; background:red;">Verify</button></a>
+                                <a href="{% url 'dealers:shopverify' i.agent_user_id %}"><button style="margin-left: 20px; background:red;width: 60px;">Verify</button></a>
                                 {% endif %}
                             </div>
                       </div>
