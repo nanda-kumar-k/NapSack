@@ -1,0 +1,319 @@
+.swiper {
+    width: 100%;
+    height: 50vh;
+    margin-top: 9vh;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /* background: rgb(230, 37, 37); */
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.not-found-mssg {
+  width: 100vw;
+  display: flex;
+}
+.man-container {
+  /* background: #f1513b; */
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 40vw;
+}
+.message-container {
+  margin-top: 100px;
+  width: 40vw;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* background-color: blue; */
+}
+.message-container h1 {
+  margin-bottom: 5px;
+}
+.message-container h2 {
+  margin-bottom: 5px;
+}
+.message-container p {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+
+.animation-text-wipe {
+  opacity: 0;
+  -webkit-mask-image: linear-gradient(to left, #0000 38%, #000 40%);
+  -webkit-mask-size: 300%;
+}
+
+.animation-text-wipe.animate-in {
+  animation-name: text-wipe;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.anim-delay-1 {
+  animation-delay: 0.25s;
+}
+.anim-delay-2 {
+  animation-delay: 0.5s;
+}
+.anim-delay-3 {
+  animation-delay: 0.75s;
+}
+
+/**
+ * Safari has issues if you try to animate
+ * mask-size, so we set that on the element
+ * and only translate the position.
+ */
+@keyframes text-wipe {
+  0% {
+    opacity: 1;
+    -webkit-mask-position: 100%;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-mask-position: 0%;
+  }
+}
+
+
+
+
+.man {
+  width: 200px;
+  margin-top: 40px;
+  /* margin-left: -400px; */
+  height: 360px;
+}
+
+.head {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(9, 9, 9, 0.301);
+  border-radius: 50%;
+  -webkit-animation-name: body;
+          animation-name: body;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.body {
+  height: 144px;
+  width: 62px;
+  background-color: rgba(9, 9, 9, 0.301);
+  border-radius: 100% 20% 0 0;
+  transform: skewX(-2deg);
+  position: relative;
+  left: -50px;
+  -webkit-animation-name: body;
+          animation-name: body;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.foot {
+  width: 40px;
+  height: 14px;
+  border-radius: 10px 80% 4px 4px;
+  transform: skewX(5deg);
+  background-color: rgba(9, 9, 9, 0.301);
+  display: inline-block;
+  -webkit-animation-name: foot;
+          animation-name: foot;
+  -webkit-animation-duration: 1.8s;
+          animation-duration: 1.8s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.foot:last-child {
+  margin-left: -40px;
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+
+.feet {
+  text-align: left;
+  position: relative;
+  top: 100px;
+  left: -66px;
+}
+.feet:before {
+  width: 120px;
+  height: 8px;
+  border-radius: 50%;
+  content: "";
+  background: rgba(9, 9, 9, 0.301);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  position: absolute;
+  bottom: -2px;
+  left: -16px;
+  -webkit-animation-name: shadow;
+          animation-name: shadow;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes foot {
+  20% {
+    transform: translate3d(34px, -16px, 0) rotate(4deg);
+  }
+  26% {
+    transform: translate3d(34px, -10px, 4) rotate(0deg);
+  }
+  40% {
+    transform: translate3d(56px, -6px, 0) rotate(-6deg);
+  }
+  44% {
+    transform: translate3d(56px, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes foot {
+  20% {
+    transform: translate3d(34px, -16px, 0) rotate(4deg);
+  }
+  26% {
+    transform: translate3d(34px, -10px, 4) rotate(0deg);
+  }
+  40% {
+    transform: translate3d(56px, -6px, 0) rotate(-6deg);
+  }
+  44% {
+    transform: translate3d(56px, 0, 0) rotate(0deg);
+  }
+}
+@-webkit-keyframes body {
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+}
+@keyframes body {
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+}
+@-webkit-keyframes shadow {
+  25% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.96);
+  }
+}
+@keyframes shadow {
+  25% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.96);
+  }
+}
+.feedback-form {
+  margin-top: 50px;
+  width: 80vw;
+  height: 70vh;
+  display: flex;
+  padding: 0 10%;
+  align-items: center;
+  /* background-color: yellow; */
+}
+.feedback-form .img-container {
+  width: 50%;
+  height: 80%;
+  padding: 2%;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.feedback-form .img-container img {
+  width: 100%;
+  height: 100%;
+}
+.feedback-form .form-container {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  /* background-color: green; */
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+
+}
+.feedback-form .form-container input {
+    width: 450px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: left;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.feedback-form .form-container textarea {
+  width: 450px;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: left;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}

@@ -1,0 +1,116 @@
+.addproducts-container{
+    display: flex;
+    height: 86%;
+    width: 90%;
+    padding: 2% 5%;
+    /*background: red;*/
+}
+
+.addproducts-left{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*background: orange;*/
+    overflow-y: auto;
+    padding: 0 2%;
+    background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    list-style-type: none;
+}
+li {
+    padding: 6px 0;
+}
+a {
+    position: relative;
+    display: block;
+    padding: 4px 0;
+    font-family: Lato, sans-serif;
+    color: #060606;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+a::after {
+     position: absolute;
+     content: "";
+     top: 100%;
+     left: 0;
+     width: 100%;
+     height: 3px;
+     background: #3498db;
+     transform: scaleX(0);
+     transform-origin: right;
+     transition: transform 0.5s;
+ }
+
+a:hover {
+     color: #95a5a6;
+ }
+
+a:hover::after {
+     transform: scaleX(1);
+     transform-origin: left;
+ }
+
+
+
+.addproducts-right {
+    width: 63%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*background: #131469;*/
+    overflow-y: auto;
+    padding: 0 6%;
+}
+
+.addproducts-products{
+    width: 96%;
+    height: 40%;
+    padding: 1% 2%;
+    /*background: orange;*/
+    display: flex;
+    margin-bottom: 30px;
+    background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.addproducts-img {
+    width: 25%;
+    height: 92%;
+    display: block;
+    padding: 1%;
+    /*background-color: #131469;*/
+    background:linear-gradient(rgb(168, 247, 247),white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.addproducts-img img{
+   width: 100%;
+    height: 100%;
+}
+.addproducts-info {
+    width: 71%;
+    height: 100%;
+    padding: 0 2%;
+}
+.addproducts-info td{
+    padding: 2%;
+    font-size: 20px;
+}
+.addproducts-info input{
+    width: 70px;
+    height: 30px;
+    font-size: 15px;
+}
+.addproducts-info button{
+    width: 70px;
+    height: 30px;
+    font-size: 15px;
+    margin-right: 50px;
+}

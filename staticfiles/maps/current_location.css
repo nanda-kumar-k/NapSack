@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.bu{
+    z-index: 100000000000;
+    width: 150px;
+    height: 100px;
+    position: fixed;
+    right: 100px;
+    bottom: 0;
+}
+.bu button{
+    padding: 2px;
+    font-size: 16px;
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 30px;
+    background:linear-gradient(rgb(242, 149, 95),white);
+
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
+.map-zoom {
+    z-index: 100000000000;
+    position: fixed;
+    width: 150px;
+    height: 100px;
+    right: 300px;
+    bottom: 0;
+}
+.map-zoom button {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    background:linear-gradient(rgb(242, 149, 95),white);
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
