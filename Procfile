@@ -1,1 +1,1 @@
-web: gunicorn Napsack.wsgi --log-file -
+web: gunicorn Napsack.wsgi
