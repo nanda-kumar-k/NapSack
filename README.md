@@ -57,16 +57,27 @@ His business shall prosper because of the exposure we try to bring on his shop a
 2. Python 3.10
 3. html, css, javascript
 4. Mysql Database
-5. Maxbox
-6. openstreetmap
-7. leaflet
+5. Maxbox api
+6. openstreetmap api
+7. leaflet api
 8. dj-database-url
 9. django-bootstrap-icons
-10. django-heroku
+10. django-heroku 
 11. django-import-export
 12. django-phonenumber-field
 13. mysql-connector-python
 14. mysqlclient
 15. phonenumbers
-16. Pillow
-17. instamojo-wrapper
+16. Pillow (for images)
+17. instamojo-wrapper (for payments)
+18. 2factor api (for moblie verification)
+
+
+# More Details about the NapSack.
+
+1. Linkedin Page
+    https://www.linkedin.com/company/napsack
+
+2. Project documentation
+    https://drive.google.com/file/d/1L9A89Pbvdez3cHw_-YfcUi8jGfEYfwZt/view?usp=sharing
+
