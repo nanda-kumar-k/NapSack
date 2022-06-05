@@ -76,8 +76,10 @@ His business shall prosper because of the exposure we try to bring on his shop a
 # More Details about the NapSack.
 
 1. Linkedin Page
+
     https://www.linkedin.com/company/napsack
 
 2. Project documentation
+
     https://drive.google.com/file/d/1L9A89Pbvdez3cHw_-YfcUi8jGfEYfwZt/view?usp=sharing
 
