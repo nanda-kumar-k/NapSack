@@ -86,7 +86,7 @@ His business shall prosper because of the exposure we try to bring on his shop a
 
 # NapSack Website
 
-Home Page
+# Home Page
 
 ![Screenshot 2022-06-05 113525](https://user-images.githubusercontent.com/96968334/172038558-01c57764-e7cd-40bd-b13a-93d750cff598.png)
 
@@ -96,7 +96,7 @@ Home Page
 
 ![Screenshot 2022-06-05 113908](https://user-images.githubusercontent.com/96968334/172038629-a1350aee-8206-4fd1-96d0-23539c3f0112.png)
 
-Cutomers Pages
+# Cutomers Pages
 
 ![Screenshot 2022-06-05 113933](https://user-images.githubusercontent.com/96968334/172043524-9d2f5b82-8cd5-4607-9304-7db4080f503d.png)
 
@@ -116,7 +116,7 @@ Cutomers Pages
 
 ![Screenshot 2022-06-05 114500](https://user-images.githubusercontent.com/96968334/172043572-db89985e-7026-4522-81c3-881d430d2831.png)
 
-Agents Pages
+# Agents Pages
 
 ![Screenshot 2022-06-05 114554](https://user-images.githubusercontent.com/96968334/172043604-9f57f716-d4d2-4cc3-9f7d-63427e05d6c1.png)
 
@@ -132,7 +132,7 @@ Agents Pages
 
 ![Screenshot 2022-06-05 115126](https://user-images.githubusercontent.com/96968334/172043649-cd05172f-e2bf-4bb7-b181-34d96ae48318.png)
 
-Dealer Pages
+# Dealer Pages
 
 ![Screenshot 2022-06-05 115348](https://user-images.githubusercontent.com/96968334/172043677-56edb343-7049-4639-ae82-3fa1a1853ef2.png)
 
@@ -150,7 +150,7 @@ Dealer Pages
 
 ![Screenshot 2022-06-05 120015](https://user-images.githubusercontent.com/96968334/172043746-aa7cb048-f97f-47b7-ab1e-e7ee11d20023.png)
 
-NapSack Admin
+# NapSack Admin
 
 ![Screenshot 2022-06-05 120201](https://user-images.githubusercontent.com/96968334/172043771-188e21d0-9715-4c11-8ab5-a81d2d6d8daa.png)
 
