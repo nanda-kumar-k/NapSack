@@ -1,8 +1,10 @@
 # ![napsacklogo](https://user-images.githubusercontent.com/96968334/172035438-dd9d51c5-09ad-4f2d-8c65-0f374d012c77.png)
-We’ve just taken the topic publicity management systems but finding a problem statement was an initial task! 
+# We’ve just taken the topic publicity management systems but finding a problem statement was an initial task! 
 
 We wanted to proceed only with help of design thinking, so we started to proceed with the methodologies of design thinking and stared to proceed only in the directed procedure of design thinking.
+
 After sessions of discussions and case studies we have come up with many problems out of which we’ve started to get a case study on the problem we found quite interesting, so we then jotted down.
+
 We took one of the first steps of designing a solution that was to ask for the questions to both the buyers and the sellers, we started to ask interviewing many buyers and sellers about the problems they face.
 
 We started off with interviewing some regular online shoppers from our friend circle and with some outsiders as well.
