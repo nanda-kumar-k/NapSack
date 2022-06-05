@@ -49,3 +49,15 @@ We come here solving the statement and bringing visible change.
 In the same process we help the small seller to bring and manage his business online just having as many resources and marketing as any other big trader seller on the platform.
 
 His business shall prosper because of the exposure we try to bring on his shop and the attraction to his local customers who didn’t know about his business.
+
+
+# For Developing NapSack
+
+1. Django
+2. Python 3.10
+3. html, css, javascript
+4. Mysql Database
+5. Maxbox
+6. openstreetmap
+7. leaflet
+8. 
