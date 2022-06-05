@@ -10,3 +10,4 @@ mysql-connector-python==8.0.28
 mysqlclient==2.1.0
 phonenumbers==8.12.45
 tzdata==2021.5
+Pillow==9.0.1
