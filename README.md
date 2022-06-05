@@ -60,4 +60,13 @@ His business shall prosper because of the exposure we try to bring on his shop a
 5. Maxbox
 6. openstreetmap
 7. leaflet
-8. 
+8. dj-database-url
+9. django-bootstrap-icons
+10. django-heroku
+11. django-import-export
+12. django-phonenumber-field
+13. mysql-connector-python
+14. mysqlclient
+15. phonenumbers
+16. Pillow
+17. instamojo-wrapper
