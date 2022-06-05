@@ -86,6 +86,12 @@ His business shall prosper because of the exposure we try to bring on his shop a
 
 # NapSack Website
 
+Home Page
+![Screenshot 2022-06-05 113525](https://user-images.githubusercontent.com/96968334/172038558-01c57764-e7cd-40bd-b13a-93d750cff598.png)
 
-    
+![Screenshot 2022-06-05 113809](https://user-images.githubusercontent.com/96968334/172038563-22cbce5e-209c-49db-a7bb-1c123b26a962.png)
+
+![Screenshot 2022-06-05 113841](https://user-images.githubusercontent.com/96968334/172038614-53dd426e-a2e7-4bcb-8f58-c6e85d3810be.png)
+![Screenshot 2022-06-05 113908](https://user-images.githubusercontent.com/96968334/172038629-a1350aee-8206-4fd1-96d0-23539c3f0112.png)
+
 
